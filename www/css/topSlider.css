@@ -1,0 +1,143 @@
+nav ul
+{
+	list-style: none;
+}
+
+p {
+  /* margin: 0 0 15px; */
+}
+.popup-head{
+background-color: cornflowerblue
+}
+.slide_container {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 999;
+}
+
+#searchMenu {
+	padding: 50px 0;
+	margin-top: -10px;
+	background-color: rgba(0,0,0,0.7);
+	display:none;
+}
+#searchMenu1 {
+	padding: 50px 0;
+	margin-top: -10px;
+	background-color: rgba(0,0,0,0.7);
+	display:none;
+}
+#searchMenu ul {
+  overflow: hidden;
+  margin: 0 1%;
+  padding: 0;
+  max-width: 900px;
+  width: 100%;
+}
+
+#searchMenu li {
+  float: left;
+  padding: 0;
+  width: 20%;
+  list-style: none;
+}
+
+#searchMenu li a {
+  display: block;
+  margin: 0 0;
+  padding: 0 0;
+  background: #fff;
+  color: #666;
+  text-align: center;
+  text-decoration: none;
+  font-size: 15px;
+  width:150px;
+}
+/* #searchMenu li a:hover {
+  border: solid 1px #12a1c6;
+  color: #12a1c6;
+}
+#searchMenu li a:active {
+  border: solid 1px #0e7b97;
+  color: #0e7b97;
+} */
+
+#searchBtn {
+  margin: -19px auto;
+  width: 59px;
+  height: 35px;
+  border-radius: 0 0 5px 5px;
+  background: #F98505;
+  cursor: -webkit-grab;
+}
+#searchBtn1 {
+  margin: -19px auto;
+  width: 59px;
+  height: 35px;
+  border-radius: 0 0 5px 5px;
+  background: #F98505;
+  cursor: -webkit-grab;
+}
+
+ .layer {
+  position: fixed;
+  display: block;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ff725d;
+/*   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(opacity=50)"; */
+  opacity: 0.5;
+} 
+
+/*---------------------
+    mobile
+----------------------- */
+@media screen and (max-width: 480px) {
+  #searchMenu {
+    padding: 1%;
+	display: none;
+  }
+  #searchMenu li {
+    width: 90%;
+  }
+  #searchMenu li a {
+    border-top: none;
+  }
+/*   #searchMenu li a:hover {
+    margin-top: -1px;
+  }
+  #searchMenu li:first-child a {
+    border-top: solid 1px #333;
+  }
+  #searchMenu li:first-child a:hover {
+    margin-top: 0;
+    border-top: solid 1px #12a1c6;
+  } */
+}
+
+.srch{
+	color: white;
+	font-size: 42px;
+}
+select{
+	width:25%;
+	height: 35px;
+	vertical-align: middle;
+	margin-top:	7px;
+}
+select::-ms-expand {
+    display: none;
+}
+:focus {
+  outline:none;
+}
+.navRb{
+	width: 100%;
+	padding: 1px 0px 0px 1%;
+}
+.navBtn{
+	padding: 5px;
+	margin: 5px;
+}

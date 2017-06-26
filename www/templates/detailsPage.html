@@ -1,0 +1,23 @@
+<!-- <ion-view view-title=""> -->
+<ion-view title='<img class="title-image" src="img/logo.png" />'>
+	<ion-content>
+	<div class="list" >
+		<div class="item item-text-wrap">
+			<h2 ng-bind-html="post.title.rendered"></h2>
+			<!-- <h2 ng-bind-html="wpPostsDetail.title.rendered | titleCase"></h2><br /> -->
+			<h4>{{post.date | date:'dd-MMMM-yyyy'}}</h4> 
+			<!-- <hr>
+			<button ng-controller="socialShareController" class="button button-clear" ng-click="shareAnywhere()">
+			    <i class="icon ion-android-share-alt"></i> -->
+		  </button>
+		</div>
+		<ion-item class="item item-image item-text text-left item-text-wrap padding">
+			<img class="full-image" ng-src="{{post.better_featured_image.source_url}}">
+			<p ng-bind-html="post.content.rendered">
+			</p>
+			<!-- <strong>Comments</strong> -->
+		</ion-item>
+
+    </div>
+	</ion-content>
+</ion-view>

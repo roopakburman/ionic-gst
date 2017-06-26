@@ -1,0 +1,41 @@
+<ion-view view-title="Search">
+    <ion-content class="">
+        <form ng-submit="search()">
+            <label class="item item-input">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="search" ng-model="form.search" placeholder="Search">
+            </label>
+            <button class="button icon ion-search button-block button-balanced" type="submit">
+                Search
+            </button>
+        </form>
+        <!-- <div class="list">
+            <div class="item item-input-inset">
+                <label class="item-input-wrapper">
+                    <input type="text" placeholder="Search for" ng-model="searchTerm">
+                </label>
+                <button class="button button-positive" ng-click="search(searchTerm)">
+                    Search
+                </button>
+            </div>
+        </div> -->
+        <!-- <div class="list" ng-repeat="">
+            <div ng-click="postItem(p.id)">
+                <div class="item item-text-wrap">{{p.title.rendered}}</div>
+                <img class="featured-image" ng-src="{{p.featured_image.attachment_meta.sizes.thumbnail.url}}">
+                <div class="item item-body">
+                    <div ng-bind-html="p.excerpt.rendered"></div>
+                </div>
+            </div>
+        </div> -->
+
+
+        <ion-item class="item-avatar item-text-wrap" ng-repeat="p in postList | orderBy:'-date'" ng-click="postItem(p.id)">
+            <img ng-src="{{p.featured_image.attachment_meta.sizes.thumbnail.url}}"/>
+            <img ng-if="post.featured_image" ng-src="{{post._embedded['https://www.hostbooks.in/attachment'][0][$index].source_url}}" class="alignleft" />
+            <h2 ng-bind-html="p.title.rendered | titleCase"></h2>
+            <h4>Posted on {{p.date | date}} by admin</h4><br />
+            <p ng-bind-html="p.excerpt.rendered"></p>
+        </ion-item>
+    </ion-content>
+</ion-view>

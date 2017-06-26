@@ -1,0 +1,243 @@
+
+.box {
+	padding: 10px
+}
+.scroll-content{
+	background:url("../img/GST-bk2.jpg");
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-size: cover;
+}
+.hideByDefault{
+    display: none;
+}
+
+.modal{
+	padding: 10px;
+	height: 60%;
+	}
+.card-bk1{
+	color: #f1931a;
+	background:url("../img/bk21.png") right;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-size: cover;
+
+}
+.card-bk2{
+	color: #ffffff;
+	background:url("../img/bkBar.png") center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-size: cover;
+
+}
+.card-listen{
+	color: #ffffff;
+	background:url("../img/GST-bk2.jpg");
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-size: cover;
+	background-repeat: no-repeat;
+
+}
+.card-transparent{
+    background-color: rgba(0, 0, 0, 0.3);
+
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-size: cover;
+	background-repeat: no-repeat;
+    text-align: center;
+}
+
+.item-complex.item-icon-right .item-content {
+    padding-right: 25px;
+}
+
+h1.head, h3.head, h4.head{
+    color: #f1931a;
+
+}
+h2.head{
+    color: #f1931a;
+    font-size: 24px;
+}
+.item h2{
+	font-size: 16px;
+	font-weight: 500;
+	color: #0077bd;
+}
+.item p{
+	text-align: left;
+	font-size: 13px;
+}
+.item-avatar .item-content{
+	padding-left: 60px;
+  	padding-right: 15px;
+}
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px; height: 0; overflow: hidden;
+}
+/*.title{
+
+	text-align: left;
+	padding-top: 5px;
+	width:45%;
+}*/
+.logo{
+	text-align: left;
+	padding-top: 5px;
+	width:80%;
+}
+table {
+	border-collapse: collapse;
+	border: 1px solid #666;
+	table-layout: fixed;
+    width: 100%;
+	font-size: 13px;
+}
+th {
+	background: black;
+	font-weight: bold;
+	color: white;
+	text-align: center;
+}
+td{
+	border: 1px solid #ddd;
+	padding:5px 3px;
+	vertical-align: middle;
+
+	white-space: -o-pre-wrap;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+}
+tr:nth-child(odd){background-color: #f2f2f2}
+.video-container iframe, .video-container object, .video-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.slider-slide {
+    height: auto;
+}
+.cText {
+	font-size: 10px;
+}
+.spinner svg {
+	width: 28px;
+	height: 28px;
+	stroke: #ff0077;
+	fill: #ff0077;
+}
+
+/*Controls icon sizes on the timeline badges*/
+.rb-bg{
+	font-size: 38px;
+}
+.rb-images{
+	font-size: 38px;
+	color: #8D64AA;
+}
+.rb-videos{
+	font-size: 38px;
+	color: #A4CF57;
+}
+.rb-notes{
+	font-size: 38px;
+	color: #00AEEF;
+}
+.hidden{
+	display: none;
+}
+
+.custom1{
+	font-size: 26px;
+	color : #42C0FB;
+}
+.custom2{
+	font-size: 26px;
+	color : #DA4835;
+}
+.custom3{
+	font-size: 26px;
+	color : #3864A3;
+}
+/* .profileContent{
+	margin-left: 20px;
+	margin-right: 20px;
+
+} */
+.iconPhone{
+	font-size: 18px;
+}
+
+/*blinking effect --> Start*/
+ .latestNews{
+	color: red;
+	font-size: 21px;
+	animation-duration: 400ms;
+	animation-name: blink;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+} 
+
+@keyframes blink {
+  0% { color: red; }
+  100% { color: gray; }
+}
+@-webkit-keyframes blink {
+  0% { color: red; }
+  100% { color: gray; }
+}
+.blink {
+  -webkit-animation: blink 2s linear infinite;
+  -moz-animation: blink 2s linear infinite;
+  animation: blink 2s linear infinite;
+}
+/* blinking effect --> End*/
+
+.action-sheet-wrapper{
+	position: relative;
+}
+.action-sheet-title{
+	font-size: 20px;
+	color: #000000;
+}
+.action-sheet .button{
+	font-size: 12px;
+}
+
+ol li{
+  list-style-type: none;
+
+}
+
+audio#iPlayer {
+	left:0px;
+	width: 98%;
+}​
+
+.scroll {
+    height: 100%;
+    overflow: visible;
+}
+.showMap{
+	position: fixed !important;
+	/*overflow: visible !important;*/
+}
+#map {
+    width: 100%;
+    height: 400px;
+
+}
+
+/*.scroll {
+  height: 100%;
+} */

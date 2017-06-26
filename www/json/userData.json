@@ -1,0 +1,141 @@
+[
+	{
+		"userID" : "simplelogin:29",
+		"userName" : "Fletcher Jones",
+		"userEmail" : "fjones@cebglobal.com",
+		"userTitle" : "Head of Product Marketing",
+		"userDept" : "BPDS",
+		"userPhone" : "571-303-5510",
+		"userOffice" : "Washington DC",
+		"uPic" : "img/fletcher.jpg"
+	},{
+		"userID" : "simplelogin:28",
+		"userName" : "Ponna Arumugam",
+		"userEmail" : "PArumugam@cebglobal.com",
+		"userTitle" : "Chief Technology Officer",
+		"userDept" : "IT",
+		"userPhone" : "571-303-5510",
+		"userOffice" : "Washington DC",
+		"uPic" : "img/ponna.jpg"
+	},
+	{
+		"userID" : "simplelogin:27",
+		"userName" : "Matthew King",
+		"userEmail" : "matt@king.com",
+		"userTitle" : "Chief Information Officer",
+		"userDept" : "IT",
+		"userPhone" : "571-303-4772",
+		"userOffice" : "Washington DC",
+		"uPic" : "img/James_King.jpg"
+	},
+	{
+		"userID" : "simplelogin:14",
+		"userName" : "Price Jett",
+		"userEmail" : "jettp@cebglobal.com",
+		"userTitle" : "Chief Information Officer",
+		"userDept" : "IT",
+		"userPhone" : "571-303-4772",
+		"userOffice" : "Washington DC",
+		"uPic" : "img/price.png"
+	},
+	{
+		"userID" : "simplelogin:18",
+		"userName" : "Haniel Lynn",
+		"userEmail" : "lynnh@cebglobal.com",
+		"userTitle" : "Group President",
+		"userDept" : "BPDS General/Central",
+		"userPhone" : "571-303-4015",
+		"userOffice" : "Washington DC",
+		"uPic" : "img/haniel.jpg"
+	},
+	{
+		"userID" : "simplelogin:16",
+		"userName" : "Melody Jones",
+		"userEmail" : "melodyjones@cebglobal.com",
+		"userTitle" : "Chief Administrative Officer",
+		"userDept" : "Human Resources",
+		"userPhone" : "571-303-4003",
+		"userOffice" : "Washington DC",
+		"uPic" : "img/melody.jpg"
+	},
+	{
+		"userID" : "simplelogin:17",
+		"userName" : "Warren Thune",
+		"userEmail" : "thunew@cebglobal.com",
+		"userTitle" : "Group President",
+		"userDept" : "TM General/Central",
+		"userPhone" : "571-303-4613",
+		"userOffice" : "Washington DC",
+		"uPic" : "img/warren.jpg"
+	},
+	{
+		"userID" : "simplelogin:15",		
+		"userName" : "Tom Monahan",
+		"userEmail" : "MonahanT@cebglobal.com",
+		"userTitle" : "Chief Executive Officer",
+		"userDept" : "Office of the CEO",
+		"userPhone" : "571-303-4013",
+		"userOffice" : "Washington DC",
+		"uPic" : "img/tom.jpg"
+	},
+	{
+		"userID" : "simplelogin:19",		
+		"userName" : "The Garage",
+		"userEmail" : "garage@cebglobal.com",
+		"userTitle" : "The Garage",
+		"userDept" : "Secret room on 10th floor",
+		"userPhone" : "571-303-6666",
+		"userOffice" : "Washington DC",
+		"uPic" : "img/garage.jpg"
+	},
+	{
+		"userID" : "simplelogin:22",		
+		"userName" : "Rob Chen",
+		"userEmail" : "robchen@cebglobal.com",
+		"userTitle" : "Chief Marketing Officer",
+		"userDept" : "Marketing",
+		"userPhone" : "571-303-6666",
+		"userOffice" : "Washington DC",
+		"uPic" : "img/rob.jpg"
+	},
+	{
+		"userID" : "simplelogin:23",		
+		"userName" : "Andrea Birdsong",
+		"userEmail" : "abirdsong@cebglobal.com",
+		"userTitle" : "Senior Digital Marketing Manager",
+		"userDept" : "Marketing",
+		"userPhone" : "571-303-6666",
+		"userOffice" : "Washington DC",
+		"uPic" : "img/andrea.jpg"
+	},
+	{
+		"userID" : "simplelogin:24",		
+		"userName" : "Aaron Myers",
+		"userEmail" : "amyers@cebglobal.com",
+		"userTitle" : "Executive Assistant",
+		"userDept" : "IT",
+		"userPhone" : "571-303-6666",
+		"userOffice" : "Washington DC",
+		"uPic" : "img/garage.jpg"
+	},
+	{
+		"userID" : "simplelogin:25",		
+		"userName" : "Eve Koopmann",
+		"userEmail" : "ekoopmann@cebglobal.com",
+		"userTitle" : "Market Director",
+		"userDept" : "Information Technology Practice",
+		"userPhone" : "571-303-6666",
+		"userOffice" : "Washington DC",
+		"uPic" : "img/eve.jpg"
+	},
+	{
+		"userID" : "simplelogin:26",		
+		"userName" : "Julie Donahue",
+		"userEmail" : "jdonahue@cebglobal.com",
+		"userTitle" : "Senior Central L＆D Lead Senior Central L&D Lead",
+		"userDept" : "Human Resources",
+		"userPhone" : "571-303-4756",
+		"userOffice" : "Washington DC",
+		"uPic" : "img/julie.jpg"
+	}
+]

@@ -1,0 +1,36 @@
+<ion-nav-bar class="bar-dark">
+  <ion-nav-back-button class="button-icon ion-chevron-left"></ion-nav-back-button>
+  <ion-nav-buttons side="left">
+    <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+  </ion-nav-buttons>
+</ion-nav-bar>
+
+<ion-tabs class="tabs-icon-top tabs-dark" animation="slide-left-right">
+
+  <ion-tab title="Home" icon-on="ion-ios-home" icon-off="ion-ios-home-outline" href="#/menu/tab/home">
+    <ion-nav-view name="home-tab"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="News" icon-on="ion-ios-bolt" icon-off="ion-ios-bolt-outline" href="#/menu/tab/news">
+    <ion-nav-view name="news-tab"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="Knowledge Base" icon-on="ion-ios-book" icon-off="ion-ios-book-outline" href="#/menu/tab/knowledgeBase">
+    <ion-nav-view name="kb-tab"></ion-nav-view>
+  </ion-tab>
+
+<!--   <ion-tab title="About GST" icon-on="ion-ios-analytics" icon-off="ion-ios-analytics-outline" href="#/menu/tab/aboutGST">
+    <ion-nav-view name="gst-tab"></ion-nav-view>
+  </ion-tab> -->
+
+  <ion-tab title="SideMenuContent" icon-on="ion-ios-search" icon-off="ion-ios-search-strong" class="ng-hide">
+    <ion-nav-view name="SideMenuContent-tab"></ion-nav-view>
+  </ion-tab>
+
+
+<!--   <ion-tab title="Search" icon-on="ion-ios-search" icon-off="ion-ios-search-strong" href="#/menu/tab/search">
+<ion-nav-view name="search-tab"></ion-nav-view>
+</ion-tab>
+-->
+
+    </ion-tabs>

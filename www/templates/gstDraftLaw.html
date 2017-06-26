@@ -1,0 +1,25 @@
+<ion-view view-title='<img class="title-image" src="img/logo.png" />'>
+  <ion-content class="">
+
+<!--     <div class="list list-block">     -->
+      <div class = "card-transparent" ng-repeat="c in chapters">
+        <div class="row" ng-if="$even">
+          <a class="col col-50" ng-click="fetchGstMatrix({{$index}})"><strong>{{chapters[$index].title}}</strong>
+            <img class="resizeImg" ng-src="{{chapters[$index].imgPath}}">
+          </a>
+          <a class="col col-50" ng-click="fetchGstMatrix({{$index + 1}})"><strong>{{chapters[$index + 1].title}}</strong>
+              <img class="resizeImg" ng-src="{{chapters[$index + 1].imgPath}}">
+          </a>
+        </div>
+      </div>
+<!--         <div class="row">
+          <div class="col col-50 card-transparent" ng-click="fetchGstMatrix({{63}})">
+            <img class="resizeImg" src="img/schedule.jpg">
+          </div>
+          <div class="col card-transparent" ng-click="fetchGstMatrix({{60}})">
+            <img class="resizeImg" src="img/faq.jpg">
+          </div>
+        </div> -->
+    <!-- </div>   -->
+    </ion-content>
+  </ion-view>

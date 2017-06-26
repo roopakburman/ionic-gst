@@ -1,0 +1,58 @@
+<ion-view view-title='<img class="title-image" src="img/logo.png" />'>
+  <ion-content class="">
+  <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()"></ion-refresher>
+  <div class="list list-block">    
+    <div class="row">
+      <a class="col col-50 customItem" ng-href="#/menu/tab/gstLaw"> 
+        <img class="resizeImg" src="img/law.jpg">
+      </a>
+      <div ng-controller="gstLawController" class="col customItem" ng-click="gstRule()">
+        <img class="resizeImg" src="img/rule.jpg">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col col-50 customItem" ng-click="fetchGstMatrix({{63}})">
+        <img class="resizeImg" src="img/schedule.jpg">
+      </div>
+      <div class="col customItem" ng-click="fetchFaqMatrix({{60}})">
+        <img class="resizeImg" src="img/faq.jpg">
+      </div>
+    </div>
+  </div>  
+  <div class="list">
+    <div class="item item-divider customHeader">
+      Latest News
+    </div>
+    <ion-item class="item-thumbnail-left item item-text-wrap" ng-repeat="n in postsNews track by $index | orderBy:'-date'" href="#/menu/tab/homeNewsDetail/{{n.id}}">
+      <img ng-src="{{n.better_featured_image.media_details.sizes.thumbnail.source_url}}"/>
+      <h2 ng-bind-html="n.title.rendered"></h2>
+      <h4>{{n.date | date:'dd-MMMM-yyyy'}}</h4>
+    </ion-item>
+    <div class="item">
+      <a class="button button-block button-positive btn-Custom" href="#/menu/tab/news" >Read more</a>
+    </div>
+  </div>
+  <div class="list">
+    <div class="item item-divider customHeader">
+      Knowledge Base
+    </div>
+    <ion-item class="item-thumbnail-left item item-text-wrap" ng-repeat="n in postsKb track by $index | orderBy:'-date'" href="#/menu/tab/homeKbDetail/{{n.id}}">
+      <img ng-src="{{n.better_featured_image.media_details.sizes.thumbnail.source_url}}"/>
+      <h2 ng-bind-html="n.title.rendered"></h2>
+      <h4>{{n.date | date:'dd-MMMM-yyyy'}}</h4>
+    </ion-item> 
+    <div class="item">
+      <a class="button button-block button-positive btn-Custom" href="#/menu/tab/knowledgeBase" >Read more</a>
+    </div>
+  </div>  
+
+
+  <ion-infinite-scroll
+  ng-if="moreDataExists()"
+  on-infinite="loadMore()"
+  distance="1%"
+  immediate-check="false">
+  </ion-infinite-scroll>
+  </ion-content>
+</ion-view>

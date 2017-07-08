@@ -64,13 +64,9 @@ h2.head{
     font-size: 24px;
 }
 .item h2{
-	font-size: 16px;
+	font-size: 17px;
 	font-weight: 500;
 	color: #0077bd;
-}
-.item p{
-	text-align: left;
-	font-size: 13px;
 }
 .item-avatar .item-content{
 	padding-left: 60px;

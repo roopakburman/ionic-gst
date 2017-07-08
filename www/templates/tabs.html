@@ -3,6 +3,9 @@
   <ion-nav-buttons side="left">
     <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
   </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button ng-show="shareAnywhere" ng-click="shareAnywhere()" class="button button-icon icon ion-android-share-alt"></button>
+  </ion-nav-buttons>
 </ion-nav-bar>
 
 <ion-tabs class="tabs-icon-top tabs-dark" animation="slide-left-right">
@@ -28,9 +31,9 @@
   </ion-tab>
 
 
-<!--   <ion-tab title="Search" icon-on="ion-ios-search" icon-off="ion-ios-search-strong" href="#/menu/tab/search">
+   <ion-tab title="Search" icon-on="ion-ios-search-strong" icon-off="ion-ios-search" href="#/menu/tab/search">
 <ion-nav-view name="search-tab"></ion-nav-view>
 </ion-tab>
--->
+
 
     </ion-tabs>

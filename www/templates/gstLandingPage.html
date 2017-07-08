@@ -24,7 +24,7 @@
     <div class="item item-divider customHeader">
       Latest News
     </div>
-    <ion-item class="item-thumbnail-left item item-text-wrap" ng-repeat="n in postsNews track by $index | orderBy:'-date'" href="#/menu/tab/homeNewsDetail/{{n.id}}">
+    <ion-item class="item-thumbnail-left item item-text-wrap" ng-repeat="n in postsNews | orderBy:'-date' | limitTo:3 track by $index" href="#/menu/tab/homeNewsDetail/{{n.id}}">
       <img ng-src="{{n.better_featured_image.media_details.sizes.thumbnail.source_url}}"/>
       <h2 ng-bind-html="n.title.rendered"></h2>
       <h4>{{n.date | date:'dd-MMMM-yyyy'}}</h4>
@@ -37,7 +37,7 @@
     <div class="item item-divider customHeader">
       Knowledge Base
     </div>
-    <ion-item class="item-thumbnail-left item item-text-wrap" ng-repeat="n in postsKb track by $index | orderBy:'-date'" href="#/menu/tab/homeKbDetail/{{n.id}}">
+    <ion-item class="item-thumbnail-left item item-text-wrap" ng-repeat="n in postsKb | orderBy:'-date' | limitTo:3 track by $index" href="#/menu/tab/homeKbDetail/{{n.id}}">
       <img ng-src="{{n.better_featured_image.media_details.sizes.thumbnail.source_url}}"/>
       <h2 ng-bind-html="n.title.rendered"></h2>
       <h4>{{n.date | date:'dd-MMMM-yyyy'}}</h4>

@@ -12,32 +12,28 @@
               </ion-item>
           </div> -->
 <!-- ng-repeat="group in groups track by $index" -->
-        <div>
-          <ion-item class="item-icon-left item-text-wrap" menu-close href="#/">
-            <i class="icon ion-ios-home home-Custom"></i>
-            Home
-          </ion-item>
-          <ion-item class="item-text-wrap item-stable" ng-click="toggleGroup(categories)" ng-class="{active: isGroupShown(categories)}">
-            <i class="icon" ng-class="isGroupShown(categories) ? 'ion-minus' : 'ion-plus'"></i>
-            GST Law
-          </ion-item>
-          <ion-item class="item-text-wrap item-accordion" menu-close ng-repeat="i in categories track by $index" ng-show="isGroupShown(categories)" href="#/menu/tab/category/{{i.id}}">
-            {{i.name}}
-            <span class="badge badge-dark">{{i.count}}</span>
-          </ion-item>
-        </div>
+          <div>
+            <ion-item class="item-icon-left item-text-wrap" menu-close href="#/">
+              <i class="icon ion-ios-home home-Custom"></i>
+              Home
+            </ion-item>
+            <ion-item class="item-text-wrap item-stable" ng-click="toggleGroup(categories)" ng-class="{active: isGroupShown(categories)}">
+              <i class="icon" ng-class="isGroupShown(categories) ? 'ion-minus' : 'ion-plus'"></i>
+              GST Law
+            </ion-item>
+            <ion-item class="item-text-wrap item-accordion" menu-close ng-repeat="i in categories track by $index" ng-show="isGroupShown(categories)" href="#/menu/tab/category/{{i.id}}">
+              {{i.name}}
+              <span class="badge badge-dark">{{i.count}}</span>
+            </ion-item>
+          </div>
 
-          <ion-item clas="item-text-wrap" menu-close href="#/menu/tab/homeRule/361">GST Rule</ion-item>
-
-          <ion-item clas="item-text-wrap" menu-close href="#/menu/tab/schedule/63">GST Schedule</ion-item>
-
-          <ion-item clas="item-text-wrap" menu-close href="#/menu/tab/faqSideGst/60">FAQ</ion-item>
-
-        <ion-item clas="item-text-wrap" menu-close href="#/menu/tab/schedule/70">Latest News</ion-item>
-
-        <ion-item clas="item-text-wrap" menu-close href="#/menu/tab/schedule/64">Knowledge Base</ion-item>
-
-          <ion-item clas="item-text-wrap" menu-close href="#/menu/tab/contactUs">Contact Us</ion-item>
+            <ion-item clas="item-text-wrap" menu-close href="#/menu/tab/homeRule/361">GST Rule</ion-item>
+            <ion-item clas="item-text-wrap" menu-close href="#/menu/tab/schedule/63">GST Schedule</ion-item>
+            <ion-item clas="item-text-wrap" menu-close href="#/menu/tab/faqSideGst/60">FAQ</ion-item>
+            <ion-item clas="item-text-wrap" menu-close href="#/menu/tab/schedule/70">Latest News</ion-item>
+            <ion-item clas="item-text-wrap" menu-close href="#/menu/tab/schedule/64">Knowledge Base</ion-item>
+            <ion-item clas="item-text-wrap" menu-close href="#/menu/tab/contactUs">Contact Us</ion-item>
+            <ion-item clas="item-text-wrap" menu-close href="#/menu/tab/search">Search GST</ion-item>
           </ion-list>
         </ion-content>
       </ion-side-menu>
@@ -47,9 +43,12 @@
             <ion-nav-back-button>
             </ion-nav-back-button>
             <ion-nav-buttons side="left">
-              <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+<!--               <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
               </button>
-            </ion-nav-buttons>
+            </ion-nav-buttons> -->
+            <!-- <ion-nav-buttons side="right">
+              <button ng-click="shareAnywhere()" class="button button-icon icon ion-android-share-alt"></button>
+            </ion-nav-buttons> -->
         </ion-nav-bar>
         <ion-nav-view name="menuContent"></ion-nav-view>
       </ion-side-menu-content>

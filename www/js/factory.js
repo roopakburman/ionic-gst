@@ -1,7 +1,7 @@
 angular.module('ionicApp.factory', [])
 
 .factory('fetchWpPosts', function($http){
-  var BASE_URL = "https://gst.hostbooks.in/wp-json/wp/v2/posts/";
+  var BASE_URL = "https://www.gst.hostbooks.in/wp-json/wp/v2/posts/";
   var items = [];
   
   return {
@@ -31,7 +31,7 @@ angular.module('ionicApp.factory', [])
   };
   return service;
   function getContent(page) {
-      return $http.get('https://gst.hostbooks.in/wp-json/wp/v2/pages/?filter[name]=' + page)
+      return $http.get('https://www.gst.hostbooks.in/wp-json/wp/v2/pages/?filter[name]=' + page)
       .then(getPageSuccess);
       function getPageSuccess(response) {
           if (response.data && response.data[0]) {
@@ -133,7 +133,7 @@ angular.module('ionicApp.factory', [])
     var myService = {
       httpRequest: function(url,method,params,dataPost,upload) {
         var passParameters = {};
-        passParameters.url = 'https://gst.hostbooks.in/wp-json/wp/v2/posts';
+        passParameters.url = 'https://www.gst.hostbooks.in/wp-json/wp/v2/posts';
 
         if (typeof method == 'undefined'){
           passParameters.method = 'GET';
@@ -173,7 +173,7 @@ angular.module('ionicApp.factory', [])
   })
 
   .factory('rssFactory', function($http){
-  	var BASE_URL = "https://gst.hostbooks.in/wp-json/wp/v2/posts/";
+  	var BASE_URL = "https://www.gst.hostbooks.in/wp-json/wp/v2/posts/";
   	// var BASE_URL = "https://www.gsthostbooks.in/wp-json/wp/v2/posts?categories=44";
 
   	var items = [];

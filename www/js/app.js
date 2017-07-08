@@ -1,8 +1,30 @@
 var gst = angular.module('ionicApp', ['ionic', 'ngCordova', 'ngResource', 'ionicApp.controllers', 'ionicApp.factory'])
-.run(function($ionicPlatform, $rootScope) {
+.run(function($ionicPlatform, $rootScope, $ionicPopup, $ionicLoading) {
       $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
+          var hide = function(){
+            $ionicLoading.hide();
+            // console.log('Hide was called too!');
+          };
+        if(window.Connection) {
+          if(navigator.connection.type == Connection.NONE) {
+              hide($ionicLoading);
+              $ionicPopup.confirm({
+                  title: "No Internet Connectionn",
+                  content: "There seems to be no internet connectivity. Please connect your device to the internet and relaunch the app."
+              })
+              .then(function(result) {
+                  if(!result) {
+                      ionic.Platform.exitApp();
+                  }
+                  if(result) {
+                      ionic.Platform.exitApp();
+                  }
+              });
+            }
+        }
+
         if(navigator.splashscreen) {
           navigator.splashscreen.hide();
         }
@@ -15,10 +37,10 @@ var gst = angular.module('ionicApp', ['ionic', 'ngCordova', 'ngResource', 'ionic
         }
       });
   })
-  .constant('configuration', {
-      apiUrl: 'https://gst.hostbooks.in/wp-json/', //wp/v2
-      websiteName: 'GST'
-  })
+  // .constant('configuration', {
+  //     apiUrl: 'https://www.gst.hostbooks.in/wp-json/', //wp/v2
+  //     websiteName: 'GST'
+  // })
 .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
   $ionicConfigProvider.tabs.position('bottom');
 
@@ -46,7 +68,7 @@ var gst = angular.module('ionicApp', ['ionic', 'ngCordova', 'ngResource', 'ionic
       views: {
         'home-tab' : {
           templateUrl: "templates/gstLandingPage.html",
-          controller: 'gstLandingPageController'
+          controller: 'gstLandingPageController' //gstLandingPageController
         }
       }
     })
@@ -131,6 +153,15 @@ var gst = angular.module('ionicApp', ['ionic', 'ngCordova', 'ngResource', 'ionic
         }
       }
     })
+    .state('menu.tabs.homeFaqDetail', {
+      url: "/homeFaqDetail/:id",
+      views: {
+        'home-tab': {
+          templateUrl: "templates/detailsPage.html",
+          controller: 'detailController' //wpPostsDetailController
+        }
+      }
+    })  
     .state('menu.tabs.faqSideGst', {
       url: "/faqSideGst/:id",
       views: {
@@ -255,29 +286,27 @@ var gst = angular.module('ionicApp', ['ionic', 'ngCordova', 'ngResource', 'ionic
       views: {
         'gst-tab': {
           templateUrl: "templates/detailsPage.html",
-          controller: 'wpPostsDetailController'
+          controller: 'wpPostsDetailController' //wpPostsDetailController
         }
       }
     })
-    // .state('menu.tabs.search', {
-    //     url: "/search",
-    //     views: {
-    //       'search-tab': {
-    //         templateUrl: "templates/search.html",
-    //         controller: 'SearchCtrl'
-    //       }
-    //     }
-    //   })
-    // .state('menu.tabs.searchItem', {
-    //   url: "/search/:postId",
-    //   views: {
-    //     'search-tab': {
-    //       templateUrl: "templates/detailsPage.html",
-    //       controller: 'wpPostsDetailController'
-    //     }
-    //   }
-    // })
-
-
-$urlRouterProvider.otherwise("/menu/tab/home");
+    .state('menu.tabs.search', {
+        url: "/search",
+        views: {
+          'search-tab': {
+            templateUrl: "templates/search.html",
+            controller: 'searchController'
+          }
+        }
+      })
+    .state('menu.tabs.searchItem', {
+      url: "/searchItem/:id",
+      views: {
+        'search-tab': {
+          templateUrl: "templates/detailsPage.html",
+          controller: 'detailController'
+        }
+      }
+    })
+    $urlRouterProvider.otherwise("/menu/tab/home");
 });

@@ -11,6 +11,19 @@
     background-image: linear-gradient(0deg,#333,#333 50%,transparent 50%);
     color: #fff;
 }*/
+.button-clear.button-clear.btn-red{
+  color: #f58d8d;
+}
+.ion-ios-close:before{
+  font-size: 25px;
+}
+.item-input-inset .item-input-wrapper input{
+  width: 100%;
+}
+
+.item-image .list-img, .item-image img:first-child{
+  height: auto;
+}
 .button.button-positive {
     background-color: #0077bd;
   }
@@ -55,8 +68,8 @@
 }
 
 .item p {
-    /*text-align: left;*/
-    font-size: 13px;
+    text-align: left;
+    font-size: 16px;
     margin-bottom: 10px;
 }
 img.full-image{

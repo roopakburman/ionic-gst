@@ -1,5 +1,5 @@
-var gst = angular.module('ionicApp', ['ionic', 'ngCordova', 'ngResource', 'ionicApp.controllers', 'ionicApp.factory'])
-.run(function($ionicPlatform, $rootScope, $ionicPopup, $ionicLoading) {
+var gst = angular.module('ionicApp', ['ionic', 'ngCordova', 'ngResource', 'ionicApp.controllers', 'ionicApp.factory', 'firebase'])
+.run(function($ionicPlatform, $rootScope, $ionicPopup, $ionicLoading, $state) { //, $state, $injector, $ionicPush
       $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -24,7 +24,6 @@ var gst = angular.module('ionicApp', ['ionic', 'ngCordova', 'ngResource', 'ionic
               });
             }
         }
-
         if(navigator.splashscreen) {
           navigator.splashscreen.hide();
         }
@@ -35,19 +34,64 @@ var gst = angular.module('ionicApp', ['ionic', 'ngCordova', 'ngResource', 'ionic
             // org.apache.cordova.statusbar required
             StatusBar.styleLightContent();
         }
+
+    // OneSignal Push plugin
+        document.addEventListener("deviceready", onDeviceReady, false);
+          function onDeviceReady() {
+            // alert("Hello! I am an alert box!!");
+          if(window.plugins != undefined){
+            // alert("Plugin Ok!");
+
+
+
+          var notificationOpenedCallback = function(jsonData) {
+
+            $state.go('menu.tabs.categoryDetail', { "id": jsonData.notification.payload.additionalData.postid});
+            // alert('Additional Data: ' + jsonData.notification.payload.additionalData.postid);
+
+
+
+            // alert("Notification opened:\n" + JSON.stringify(jsonData));
+            console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+          };
+          // window.plugins.OneSignal.init("583d3a57-2838-416d-b6d4-f9fe6b239798",
+          // {googleProjectNumber: "1042076123775"},
+          // notificationOpenedCallback);          
+
+            window.plugins.OneSignal
+              .startInit("583d3a57-2838-416d-b6d4-f9fe6b239798")
+              .handleNotificationOpened(notificationOpenedCallback)
+              .endInit();
+
+        }};
       });
+
+
+        $ionicPlatform.registerBackButtonAction(function(event) {
+          if($state.current.name=="menu.tabs.home"){ // your check here
+            $ionicPopup.confirm({
+              title: 'Quit µGST!',
+              template: 'Are you sure you want to quit the µGT app?'
+            }).then(function(res) {
+              if (res) {
+                navigator.app.exitApp();
+              }
+            })
+          } else {
+                navigator.app.backHistory();
+              }
+        }, 100);
+
+
+
+
   })
-  // .constant('configuration', {
-  //     apiUrl: 'https://www.gst.hostbooks.in/wp-json/', //wp/v2
-  //     websiteName: 'GST'
-  // })
-.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+.config(function ( $stateProvider, $urlRouterProvider, $ionicConfigProvider) { //$ionicCloudProvider,
   $ionicConfigProvider.tabs.position('bottom');
 
   $ionicConfigProvider.navBar.alignTitle('center');
   $ionicConfigProvider.backButton.previousTitleText(false);
   $ionicConfigProvider.backButton.text('')
-
   $stateProvider
     .state('menu', {
       url: "/menu",
@@ -90,15 +134,6 @@ var gst = angular.module('ionicApp', ['ionic', 'ngCordova', 'ngResource', 'ionic
         }
       }
     })
-    .state('menu.tabs.aboutGST', {
-      url: "/aboutGST",
-      views: {
-        'gst-tab': {
-          templateUrl: "templates/aboutGST.html",
-          controller: 'aboutGstController'
-        }
-      }
-    })
     .state('menu.tabs.category', {
         url: '/category/:id',
         views: {
@@ -135,6 +170,35 @@ var gst = angular.module('ionicApp', ['ionic', 'ngCordova', 'ngResource', 'ionic
         }
       }
     })
+    .state('menu.tabs.gstRateFinder', {
+      url: "/gstRateFinder",
+      views: {
+        'home-tab': {
+          templateUrl: "templates/gstRateFinder.html",
+          controller: 'gstRateController'
+        }
+      }
+    })
+    .state('menu.tabs.selectSearchMode', {
+      url: "/selectSearchMode",
+      views: {
+        'home-tab': {
+          templateUrl: "templates/selectSearchMode.html",
+          controller: 'searchModeController'
+        }
+      }
+    })
+    .state('menu.tabs.gstRateCalculator', {
+      url: "/gstRateCalculator",
+      views: {
+        'home-tab': {
+          templateUrl: "templates/gstRateCalculator.html",
+          controller: 'gstRateController'
+        }
+      }
+    })
+
+
     .state('menu.tabs.homeLawListing', {
       url: "/homeLawListing/:id",
       views: {
@@ -253,15 +317,6 @@ var gst = angular.module('ionicApp', ['ionic', 'ngCordova', 'ngResource', 'ionic
         }
       }
     })
-    .state('menu.tabs.gstDetail', {
-      url: "/gstDetail/:id",
-      views: {
-        'gst-tab': {
-          templateUrl: "templates/detailsPage.html",
-          controller: 'detailController' //wpPostsDetailController
-        }
-      }
-    })
     .state('menu.tabs.newsDetail', {
       url: "/newsDetail/:id",
       views: {
@@ -277,16 +332,6 @@ var gst = angular.module('ionicApp', ['ionic', 'ngCordova', 'ngResource', 'ionic
         'kb-tab': {
           templateUrl: "templates/detailsPage.html",
           controller: 'detailController' //wpPostsDetailController
-        }
-      }
-    })
-
-    .state('menu.tabs.aboutGSTItem', {
-      url: "/aboutGST/:postId",
-      views: {
-        'gst-tab': {
-          templateUrl: "templates/detailsPage.html",
-          controller: 'wpPostsDetailController' //wpPostsDetailController
         }
       }
     })
@@ -309,4 +354,13 @@ var gst = angular.module('ionicApp', ['ionic', 'ngCordova', 'ngResource', 'ionic
       }
     })
     $urlRouterProvider.otherwise("/menu/tab/home");
+
+    var config = {
+      apiKey: "AIzaSyAIJuxuA14e3Q8a1JCOEiwzWt6J_a5QINc",
+      authDomain: "gstapp-1497955055944.firebaseapp.com",
+      databaseURL: "https://gstapp-1497955055944.firebaseio.com",
+      // projectId: "gstapp-1497955055944",
+      storageBucket: "gstapp-1497955055944.appspot.com"
+    };
+    firebase.initializeApp(config);
 });

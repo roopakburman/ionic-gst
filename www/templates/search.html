@@ -1,4 +1,4 @@
-<ion-view  title='<img class="title-image" src="img/logo.png" />'>
+<ion-view title='<img class="title-image" src="img/logo.png" />'>
     <ion-content>
         <div class="list">
             <div class="item item-input-inset">
@@ -6,7 +6,7 @@
                     <input type="search" placeholder="Search for" ng-model="searchTerm"> 
                 </label>
                     <a ng-click="searchTerm = ''" class="button ion-ios-close button-clear button-small btn-red" ng-show="searchTerm.length"></a>
-                 <button class="button button-positive" ng-click="loadMore(); doRefresh()">
+                 <button class="button button-positive" ng-click="loadMore(); doRefresh(); ">
                     Search
                 </button>
             </div>
@@ -21,7 +21,7 @@
                     </ion-item>
                 </div>
             </div>
-
+            
         </div>
     </ion-content>
 </ion-view>

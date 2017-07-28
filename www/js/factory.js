@@ -1,7 +1,20 @@
 angular.module('ionicApp.factory', [])
 
+.factory('searchModeFactory', function () {
+  var searchMode;
+  return {
+      getSearchMode: function () {
+          return searchMode;
+      },
+      setSearchMode: function (userSearch) {
+          searchMode = userSearch;
+      }
+  };
+})
+
+
 .factory('fetchWpPosts', function($http){
-  var BASE_URL = "https://www.gst.hostbooks.in/wp-json/wp/v2/posts/";
+  var BASE_URL = "https://hostbooks.in/wp-json/wp/v2/posts/";
   var items = [];
   
   return {
@@ -31,7 +44,7 @@ angular.module('ionicApp.factory', [])
   };
   return service;
   function getContent(page) {
-      return $http.get('https://www.gst.hostbooks.in/wp-json/wp/v2/pages/?filter[name]=' + page)
+      return $http.get('https://hostbooks.in/wp-json/wp/v2/pages/?filter[name]=' + page)
       .then(getPageSuccess);
       function getPageSuccess(response) {
           if (response.data && response.data[0]) {
@@ -43,8 +56,6 @@ angular.module('ionicApp.factory', [])
   }
 })
 
-
-
 .factory('DataLoader', function( $http, $log ) {
 
   return {
@@ -53,7 +64,6 @@ angular.module('ionicApp.factory', [])
       return $http.get( url );
     }
   }
-
 })
 
 // New Content Start - check the content and remove that is not needed
@@ -133,7 +143,7 @@ angular.module('ionicApp.factory', [])
     var myService = {
       httpRequest: function(url,method,params,dataPost,upload) {
         var passParameters = {};
-        passParameters.url = 'https://www.gst.hostbooks.in/wp-json/wp/v2/posts';
+        passParameters.url = 'https://hostbooks.in/wp-json/wp/v2/posts';
 
         if (typeof method == 'undefined'){
           passParameters.method = 'GET';
@@ -173,7 +183,7 @@ angular.module('ionicApp.factory', [])
   })
 
   .factory('rssFactory', function($http){
-  	var BASE_URL = "https://www.gst.hostbooks.in/wp-json/wp/v2/posts/";
+  	var BASE_URL = "https://hostbooks.in/wp-json/wp/v2/posts/";
   	// var BASE_URL = "https://www.gsthostbooks.in/wp-json/wp/v2/posts?categories=44";
 
   	var items = [];
@@ -218,6 +228,12 @@ angular.module('ionicApp.factory', [])
     }
   })
 
+  // Custom filter for rendering today's date
+  .filter('currentdate',['$filter',  function($filter) {
+      return function() {
+          return $filter('date')(new Date(), 'dd-MMMM-yyyy');
+      };
+  }])
   // Custom Filter for converting text to Titel Case
   .filter('titleCase', function() {
     return function(input) {

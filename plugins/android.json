@@ -7,28 +7,40 @@
         "files": {}
     },
     "installed_plugins": {
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.hostbooks.gstmu"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.hostbooks.gstmu"
+        },
         "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "com.hostbooks.gst"
-        },
-        "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "com.hostbooks.gst"
-        },
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.hostbooks.gst"
-        },
-        "cordova-plugin-x-socialsharing": {
-            "PACKAGE_NAME": "com.hostbooks.gst"
+            "PACKAGE_NAME": "com.hostbooks.gstmu"
         },
         "cordova-plugin-network-information": {
-            "PACKAGE_NAME": "com.hostbooks.gst"
+            "PACKAGE_NAME": "com.hostbooks.gstmu"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.hostbooks.gstmu"
         },
         "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "com.hostbooks.gst"
+            "PACKAGE_NAME": "com.hostbooks.gstmu"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.hostbooks.gstmu"
+        },
+        "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "com.hostbooks.gstmu"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.hostbooks.gstmu"
+        },
+        "onesignal-cordova-plugin": {
+            "PACKAGE_NAME": "com.hostbooks.gstmu"
         }
     },
     "dependent_plugins": {
         "es6-promise-plugin": {
-            "PACKAGE_NAME": "com.hostbooks.gst"
+            "PACKAGE_NAME": "com.hostbooks.gstmu"
         }
     }
 }

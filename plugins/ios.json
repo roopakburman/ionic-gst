@@ -8,27 +8,30 @@
     },
     "installed_plugins": {
         "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "com.ionicframework.gst"
-        },
-        "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "com.ionicframework.gst"
-        },
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.ionicframework.gst"
-        },
-        "cordova-plugin-x-socialsharing": {
-            "PACKAGE_NAME": "com.ionicframework.gst"
+            "PACKAGE_NAME": "com.hostbooks.gstmu"
         },
         "cordova-plugin-network-information": {
-            "PACKAGE_NAME": "com.hostbooks.gst"
+            "PACKAGE_NAME": "com.hostbooks.gstmu"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.hostbooks.gstmu"
         },
         "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "com.hostbooks.gst"
+            "PACKAGE_NAME": "com.hostbooks.gstmu"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.hostbooks.gstmu"
+        },
+        "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "com.hostbooks.gstmu"
+        },
+        "onesignal-cordova-plugin": {
+            "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
         }
     },
     "dependent_plugins": {
         "es6-promise-plugin": {
-            "PACKAGE_NAME": "com.ionicframework.gst"
+            "PACKAGE_NAME": "com.hostbooks.gstmu"
         }
     }
 }

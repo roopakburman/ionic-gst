@@ -1,0 +1,65 @@
+<ion-view title='<img class="title-image" src="img/logo.png" />'>
+  <ion-content>
+    <div class="list">
+     <div class="row item item-input-inset">
+        <label class="item-input-wrapper">
+          <input type="search" placeholder="Search for" ng-model="searchTerm"> 
+        </label>
+        <a ng-click="searchTerm = ''" class="button ion-close-circled button-clear button-small btn-red" ng-show="searchTerm.length"></a>
+        
+         <button class="button button-positive" ng-click="searchFirebase(selectedSearch)">
+            Search
+        </button> <p></p>
+      </div> 
+      <ion-list  >
+
+    </ion-list>
+    <div id="hidden">
+      <div ng-hide="searchTerm==''">
+        <ion-list ng-hide="selectedSearch != 'Goods'">
+          <ion-item ng-repeat="item in searchResults | filter : {Description: searchTerm} track by $index" class="item item-text-wrap item-icon-right" ng-click="expandItem(item)">
+            <div id="searchtext" ng-class="isItemExpanded(item) ? 'expand-item active' : 'expand-item inactive'">
+             <!--  <h2 ng-hide="selectedSearch != 'Goods'">{{item.ChapterNumber}} {{item.ChapterName}}</h2>
+              <p ng-hide="selectedSearch != 'Goods'"><strong>HSN Code:</strong> {{item.HSNCode}}<br />
+              <strong>Rate(%):</strong> {{item.Rate}}<br />
+              <strong>CESS(%):</strong> {{item.CESS}} <br />
+              <strong>Meta-Description:</strong> {{item.ChapterMetaDescription}}<br />
+              <strong>Description:</strong> {{item.Description}}</p> -->
+              <h2>{{item.ChapterNumber}} {{item.ChapterName}}</h2>
+              <p><strong>HSN Code:</strong> {{item.HSNCode}}<br />
+              <strong>Rate(%):</strong> {{item.Rate}}<br />
+              <strong>CESS(%):</strong> {{item.CESS}} <br />
+              <strong>Meta-Description:</strong> {{item.ChapterMetaDescription}}<br />
+              <strong>Description:</strong> {{item.Description}}</p>
+
+              <!-- <ion-option-button class="button-assertive icon-left ion-trash-b">
+                Remove
+              </ion-option-button> -->
+              <button class="button button-positive" ng-click="toGstCalculator({{item}})">Calculate GST on Goods</button>
+            </div>
+            <i ng-class="isItemExpanded(item) ? 'icon ion-chevron-down icon-accessory' : 'icon ion-chevron-right icon-accessory'"></i>
+
+          </ion-item>
+        </ion-list>  
+
+        <ion-list ng-hide="selectedSearch != 'Services'">
+           <ion-item ng-repeat="item in searchResults | filter : searchTerm track by $index" class="item item-text-wrap item-icon-right" ng-click="expandItem(item)">
+            <div id="searchtext" ng-class="isItemExpanded(item) ? 'expand-item active' : 'expand-item inactive'">
+
+              <h2><strong>SAC Code: </strong>{{item.SAC_Code}}</h2>
+              <p><strong>Description: </strong>{{item.Description_of_Services}}</p>
+              <p><strong>Rate(%): </strong>{{item.Rate}}</p>
+
+              <!-- <h2 ng-hide="selectedSearch != 'Services'"><strong>SAC Code: </strong>{{item.SAC_Code}}</h2>
+              <p ng-hide="selectedSearch != 'Services'"><strong>Description: </strong>{{item.Description_of_Services}}</p>
+              <p ng-hide="selectedSearch != 'Services'"><strong>Rate(%): </strong>{{item.Rate}}</p> -->
+              <button class="button button-positive" ng-click="toGstCalculator(item)">Calculate GST on Services</button>
+            </div>
+            <i ng-class="isItemExpanded(item) ? 'icon ion-chevron-down icon-accessory' : 'icon ion-chevron-right icon-accessory'"></i>
+        </ion-list>
+
+      </div>
+    </div>  
+
+  </ion-content>
+</ion-view>

@@ -55,7 +55,7 @@
   "_id": "cordova-plugin-statusbar@2.2.3",
   "_shasum": "51c5e02ad433bebd0b0dc977a446eb91dfee1502",
   "_resolved": "https://registry.npmjs.org/cordova-plugin-statusbar/-/cordova-plugin-statusbar-2.2.3.tgz",
-  "_from": "cordova-plugin-statusbar@2.2.3",
+  "_from": "cordova-plugin-statusbar@>=2.2.3 <3.0.0",
   "_npmVersion": "3.10.10",
   "_nodeVersion": "6.10.1",
   "_npmUser": {
@@ -100,5 +100,6 @@
     "host": "packages-12-west.internal.npmjs.com",
     "tmp": "tmp/cordova-plugin-statusbar-2.2.3.tgz_1493685656975_0.141719562234357"
   },
-  "directories": {}
+  "directories": {},
+  "readme": "ERROR: No README data found!"
 }

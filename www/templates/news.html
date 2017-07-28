@@ -8,11 +8,22 @@
     </div> -->
     <ion-content> <!-- class="has-subheader" -->
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()"></ion-refresher>
-         
+
+    <div ng-if='$first' class="card" ng-repeat="p in posts track by $index | orderBy:'-date'" href="#/menu/tab/kbDetail/{{p.id}}">
+      <a href="#/menu/tab/newsDetail/{{p.id}}">
+      <div class="item item-text-wrap">
+        <img ng-src="{{p.better_featured_image.source_url}}">
+      </div>
+      <div class="item item-text-wrap item-divider">
+        <h2 ng-bind-html="p.title.rendered"></h2>
+        <h4>{{p.date | date:'dd-MMMM-yyyy'}}</h4>
+      </div>
+      </a>
+    </div>
     <ion-list>
-          <ion-item class="item-thumbnail-left item-text-wrap item-icon-right" ng-repeat="p in posts | orderBy:'-date' | filter: searchText" href="#/menu/tab/newsDetail/{{p.id}}">        
-        <img ng-src="{{p.better_featured_image.media_details.sizes.thumbnail.source_url}}"/>
-        <!-- <img ng-if="post.featured_image" ng-src="{{post._embedded['http://www.eazetours.in/hostbooks.in/attachment'][0][$index].source_url}}" class="alignleft" /> -->
+          <ion-item ng-if='!$first' ng-class='{customListItem:$first}' class="item-thumbnail-left item-text-wrap item-icon-right" ng-repeat="p in posts | orderBy:'-date'" href="#/menu/tab/newsDetail/{{p.id}}">        
+        <img ng-if='!$first' ng-src="{{p.better_featured_image.media_details.sizes.thumbnail.source_url}}"/>
+        <!-- <img ng-if='$first' ng-src="{{p.better_featured_image.source_url}}"/> -->
         
         <h2 ng-bind-html="p.title.rendered"></h2>
         <h4>{{p.date | date:'dd-MMMM-yyyy'}}</h4>

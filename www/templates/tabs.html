@@ -1,15 +1,14 @@
 <ion-nav-bar class="bar-positive">
   <ion-nav-back-button class="button-icon ion-chevron-left"></ion-nav-back-button>
-  <ion-nav-buttons side="left">
-    <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
-  </ion-nav-buttons>
-  <ion-nav-buttons side="right">
-    <button ng-show="shareAnywhere" ng-click="shareAnywhere()" class="button button-icon icon ion-android-share-alt"></button>
-  </ion-nav-buttons>
+    <ion-nav-buttons side="left">
+      <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+      <button ng-show="shareAnywhere" ng-click="shareAnywhere()" class="button button-icon icon ion-android-share-alt"></button>
+    </ion-nav-buttons>
 </ion-nav-bar>
-
 <ion-tabs class="tabs-icon-top tabs-positive" animation="slide-left-right">
-
+  
   <ion-tab title="Home" icon-on="ion-ios-home" icon-off="ion-ios-home-outline" href="#/">
     <ion-nav-view name="home-tab"></ion-nav-view>
   </ion-tab>
@@ -18,22 +17,16 @@
     <ion-nav-view name="news-tab"></ion-nav-view>
   </ion-tab>
 
-  <ion-tab title="Knowledge Base" icon-on="ion-ios-book" icon-off="ion-ios-book-outline" href="#/menu/tab/knowledgeBase">
-    <ion-nav-view name="kb-tab"></ion-nav-view>
+  <ion-tab title="Rate Finder" icon-on="ion-ios-search-strong" icon-off="ion-ios-search" href="#/menu/tab/finderSearchMode">
+    <ion-nav-view name="rateFinder-tab"></ion-nav-view>
   </ion-tab>
-
-<!--   <ion-tab title="About GST" icon-on="ion-ios-analytics" icon-off="ion-ios-analytics-outline" href="#/menu/tab/aboutGST">
-    <ion-nav-view name="gst-tab"></ion-nav-view>
-  </ion-tab> -->
-
+  
+  <ion-tab title="Rate Calculator" icon-on="ion-ios-calculator" icon-off="ion-ios-calculator-outline" href="#/menu/tab/calculatorGst">
+    <ion-nav-view name="rateCalculator-tab"></ion-nav-view>
+  </ion-tab>
+  
   <ion-tab title="SideMenuContent" icon-on="ion-ios-search" icon-off="ion-ios-search-strong" class="ng-hide">
     <ion-nav-view name="SideMenuContent-tab"></ion-nav-view>
   </ion-tab>
 
-
-   <ion-tab title="Search" icon-on="ion-ios-search-strong" icon-off="ion-ios-search" href="#/menu/tab/search">
-<ion-nav-view name="search-tab"></ion-nav-view>
-</ion-tab>
-
-
-    </ion-tabs>
+</ion-tabs>

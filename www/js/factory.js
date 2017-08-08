@@ -12,7 +12,6 @@ angular.module('ionicApp.factory', [])
   };
 })
 
-
 .factory('fetchWpPosts', function($http){
   var BASE_URL = "https://hostbooks.in/wp-json/wp/v2/posts/";
   var items = [];
@@ -239,5 +238,64 @@ angular.module('ionicApp.factory', [])
     return function(input) {
       input = input || '';
       return input.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+    };
+  })
+.directive('select', function($timeout) {
+  return {
+    restrict: 'E',
+    link: function(_, element) {
+      element.bind('focus', function(e) {
+        $timeout(function() {
+          if (window.cordova && window.cordova.plugins.Keyboard) {
+            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
+          }
+        })
+      });
+      element.bind('blur', function(e) {
+        $timeout(function() {
+          if (window.cordova && window.cordova.plugins.Keyboard) {
+            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+          }
+        });
+      });
+    }
+  }
+})
+.directive('focusMe', function($timeout) {
+   return {
+     scope: {
+        focusValue: "=focusMe"
+    },
+        link: function(scope, element, attrs) {
+            console.log("focusMe directiveinit " + scope.focusValue);
+            if( scope.focusValue ) {
+                $timeout(function() {
+                    console.log(" adding focus to element")
+
+                    element[0].focus();
+                });
+            }
+        }
+    };
+})
+// .directive('focusMe', function($timeout) {
+//   return {
+//     link: function(scope, element, attrs) {
+//       $timeout(function() {
+//         element[0].focus(); 
+//       }, 150);
+//     }
+//   };
+// })
+  .filter('testFilter', function(){
+    var filterCount = 0;
+    return function (values) {
+      return values.map(function (value) {
+        filterCount++;
+        document.querySelector('.filterCount').innerHTML = (
+          'Filter count: ' + filterCount
+        );
+        return value;
+      });
     };
   });

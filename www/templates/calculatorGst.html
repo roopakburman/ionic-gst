@@ -1,0 +1,72 @@
+<ion-view title='<img class="title-image" src="img/logo.png" />'>
+    <ion-content>
+        
+        <div class="">
+            <div class="item item-divider">
+                GST Calculator 2017
+            </div>
+            <div class="item item-text-wrap">
+              <form name="gstCalculatorForm">
+                <div class="list">
+                  <label class="item item-input item-input-wrapper" focus-me>
+                    <input type="number" placeholder="Enter your Amount" ng-model="amount" name="amount" id="amount" required>
+                  </label>
+                  <label class="item item-input item-select">
+                    <div class="input-label">
+                      Select GST %
+                    </div>
+                    <select ng-model="gstRate" id="gstRate" required>
+                      <option selected value=5>5%</option>
+                      <option value=12>12%</option>
+                      <option value=18>18%</option>
+                      <option value=28>28%</option>
+                    </select>
+                  </label>
+                </div>
+
+                <button class="button button-block button-positive" ng-click="calculateGST(amount, gstRate)" ng-disabled="gstCalculatorForm.$invalid">
+                  Calculate
+                </button>
+              </form>
+                <div class="hidden" id="hidden">
+                  <div class="item row">
+                    <div class="item head">
+                      <strong>Amount:</strong>
+                    </div>
+                    <div align="right" class="col col-70">
+                      <span>{{amount | currency:"&#8377;"}}</span>
+                    </div>
+                  </div>
+                  <div class="item row">
+                    <div class="item head">
+                      <strong>GST %:</strong>
+                    </div>
+                    <div align="right" class="col col-70">
+                      <span>{{gstRate}}</span>
+                    </div>
+                  </div>
+                  <div class="item row">
+                    <div class="item head">
+                      <strong>GST Price:</strong>
+                    </div>
+                    <div align="right" class="col col-70">
+                      <span>{{gstPrice | currency:"&#8377;"}}</span>
+                    </div>
+                  </div>
+                  <div class="item row">
+                    <div class="item head">
+                      <strong>Net Price:</strong>
+                    </div>
+                    <div align="right" class="col col-70">
+                      <span>{{netPrice | currency:"&#8377;"}}</span>
+                    </div>
+                  </div>
+                  <button class="button button-block button-calm" ng-click="resetForm()" ng-disabled="gstCalculatorForm.$invalid">
+                  Reset
+                </button>
+                </div>
+            </div>
+        </div>
+        </form>
+    </ion-content>
+</ion-view>

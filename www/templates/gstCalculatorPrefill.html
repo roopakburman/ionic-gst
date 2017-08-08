@@ -1,0 +1,66 @@
+<ion-view title='<img class="title-image" src="img/logo.png" />'>
+    <ion-content>
+    <div class="tansparent" ng-repeat="d in gstData">
+      <div class="item item-divider">
+          GST Calculator 2017
+      </div> 
+      <form name="gstCalculatorPrefillForm"> 
+        <div class="item item-text-wrap"> 
+          <div class="list">
+            <label class="item item-text-wrap">
+              <strong ng-show='!d.SACCode'>{{d.chNumber}}: {{d.ChName}}</strong>
+              <strong ng-show='!d.chNumber'>SAC Code: {{d.SACCode}}</strong>
+            </label>               
+            <label class="item item-input">
+              <input type="number" placeholder="Enter your Amount" ng-model="amount" required>
+            </label>
+            <label class="item item-input customInput">
+              <input type="number" readonly="readonly" value= "{{d.gstRate}}" ng-model="d.gstRate">%
+            </label>
+          </div>
+        
+          <button class="button button-block button-positive" ng-click="calculateGST(amount, d.gstRate)" ng-disabled="gstCalculatorPrefillForm.$invalid">
+            Calculate
+          </button>
+        </div>
+      </form> 
+        <div class="hidden" id="hidden1">
+          <div class="item row">
+            <div class="item head">
+              <strong>Amount:</strong>
+            </div>
+            <div align="right" class="col col-70">
+              <span>{{amount | currency:"&#8377;"}}</span>
+            </div>
+          </div>
+          <div class="item row">
+            <div class="item head">
+              <strong>GST %:</strong>
+            </div>
+            <div align="right" class="col col-70">
+              <span>{{d.gstRate || "NILL"}}</span>
+            </div>
+          </div>
+          <div class="item row">
+            <div class="item head">
+              <strong>GST Price:</strong>
+            </div>
+            <div align="right" class="col col-70">
+              <span>{{gstPrice | currency:"&#8377;"}}</span>
+            </div>
+          </div>
+          <div class="item row">
+            <div class="item head">
+              <strong>Net Price:</strong>
+            </div>
+            <div align="right" class="col col-70">
+              <span>{{netPrice | currency:"&#8377;"}}</span>
+            </div>
+          </div>
+          <div ng-show="!d.msg" class="metaCess">*CESS applicable: {{d.gstCess}}</div>
+          <div ng-show="d.msg" class="metaCess">{{d.msg}}</div>
+        </div>
+      </div>
+
+    </ion-content>
+</ion-view>

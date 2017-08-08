@@ -1,3 +1,45 @@
+
+.item.head {
+    background: none;
+    border: none;
+}
+.col.col-70 {
+    padding: 15px;
+}
+.item.row {
+    border-color: #ccc;
+    border-bottom-style: solid;
+    border-right-style: none;
+    border-left-style: none;
+    border-top-style: dashed;
+}
+.matrixBackground{
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.matrixBackground .col {
+  padding: 1px 3px !important;
+}
+
+/*label.customInput{
+  width:30%;
+  text-align: right;
+}*/
+input.ng-valid{
+  font-size: 18px;
+}
+select.ng-valid {
+  font-size: 18px;
+  padding: 14px 48px 12px 16px;
+}
+.metaCess{
+    text-transform: uppercase;
+    font-size: 14px !important;
+    color: #333;
+    background-color: rgba(31, 139, 255, 0.28);
+    text-align: center;
+        padding: 7px;
+    font-style: italic;
+}
 .expand-item{
   position: relative;
   width: 100%;
@@ -33,6 +75,9 @@
 div.detailsPage h2{
   font-size: 22px;
 }
+div.rateFinder h2{
+  font-size: 18px;
+}
 .item-thumbnail-left, .item-thumbnail-left .item-content {
   padding-right: 5px !important;
 }
@@ -62,6 +107,22 @@ padding: 2px 5px;
     padding: 2px 4px;
     margin: 5px 5px 5px 0;
     line-height: 25px;
+}
+.rateMeta{
+    background: #efefef;
+    padding: 7px;
+    margin: 12px 0;
+    font-size: 13px !important;
+    text-transform: uppercase;
+    display: block;
+}
+.rateMeta span {
+  padding: 2px 4px;
+  margin: 5px 5px 5px 0;
+  line-height: 25px;
+}
+.rateFinder p {
+    padding: 10px 0 0px 0 !important;
 }
 span.tab-title {
     text-transform: uppercase;
@@ -96,11 +157,19 @@ div.card div.item:first-child.item-text-wrap {
 .item-thumbnail-left .item-content .item-image, .item-thumbnail-left .item-content>img:first-child, .item-thumbnail-left .item-image, .item-thumbnail-left>img:first-child {
   border: 1px solid #ccc;
 }
-.button-clear.button-clear.btn-red{
-  color: #f58d8d;
+.button-clear.button-clear.btn-red {
+    color: #f58d8d;
+    padding: 3px;
+    margin: 0 auto;
+    font-size: 25px;
+    text-align: center;
 }
 .ion-ios-close:before{
   font-size: 25px;
+}
+.customInput input{
+  padding-right: 2px;
+  text-align: right;
 }
 .item-input-inset .item-input-wrapper input{
   width: 100%;
@@ -112,14 +181,17 @@ div.card div.item:first-child.item-text-wrap {
 .button.button-positive {
     background-color: #BD6D00;
     border-color: #BD6D00;
+    display: block;
 }
 
 .title-image {
     margin-top: 7px;
     height: 30px;
 }
-
-
+.servRate {
+    display: block;
+    margin-bottom: 15px;
+}
 .customHeader.item-divider {
     background-color: #0077bd;
     color: #fff;

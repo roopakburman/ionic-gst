@@ -31,10 +31,10 @@
         "cordova-plugin-x-socialsharing": {
             "PACKAGE_NAME": "com.hostbooks.gstmu"
         },
-        "ionic-plugin-keyboard": {
+        "onesignal-cordova-plugin": {
             "PACKAGE_NAME": "com.hostbooks.gstmu"
         },
-        "onesignal-cordova-plugin": {
+        "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.hostbooks.gstmu"
         }
     },

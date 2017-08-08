@@ -1,11 +1,13 @@
 angular.module('ionicApp.controllers', [])
 
-.controller('searchModeController', function($scope, $state, searchModeFactory){
+.controller('searchModeController', function($scope, $state, $ionicHistory, searchModeFactory){
   
+    $ionicHistory.clearCache();
+
+
   $scope.setGoods = function(){
     searchModeFactory.setSearchMode('Goods');
     $state.go('menu.tabs.gstRateFinder');
-    //   console.log(id);
     };
   $scope.setServices = function(){
     searchModeFactory.setSearchMode('Services');
@@ -13,89 +15,215 @@ angular.module('ionicApp.controllers', [])
     };
 
 })
+// .controller('gstRateListController', function($scope, $state, $ionicLoading, $firebaseArray, searchModeFactory, feedData){
+//   var selectedSearch;
+//     $scope.show = function() {
+//       $ionicLoading.show({
+//       template: '<p>Preparing your search results</p><ion-spinner icon="ripple"></ion-spinner>'
+//       });
+//     };
+//     $scope.hide = function(){
+//       $ionicLoading.hide();
+//     };
 
-.controller('gstRateController', function($scope, $state, $ionicLoading, $firebaseArray, searchModeFactory){
-  var id;
-  // var gstRate=0;
+//   selectedSearch = searchModeFactory.getSearchMode();
 
-  $scope.show = function() {
-    $ionicLoading.show({
-      template: '<p>Preparing your search results</p><ion-spinner></ion-spinner>'
-    });
-    // console.log('this was called');
-  };
-  $scope.hide = function(){
-    $ionicLoading.hide();
-        // console.log('Hide was called too!');
-  };
+//   console.log(selectedSearch);
+
+//   $scope.searchFirebase = function($filter, $interval, selectedSearch){
+
+//       $scope.show($ionicLoading);
+
+//       if (selectedSearch ==='Goods'){
+//         console.log('Goods search Activated');
+//         var ref = firebase.database().ref().child('Goods');
+//         $firebaseArray(ref).$loaded().then(function (results){
+//             $scope.searchResults = results;
+//             // console.log(results);
+//             $scope.hide($ionicLoading);
+//           },function(error){
+//             console.error(error);
+//             alert(error);
+//           });
+//       }else{
+//         $scope.show($ionicLoading);
+//         console.log(selectedSearch);
+//           console.log('Services search Activated');
+//           var ref = firebase.database().ref().child('Services');
+//           $firebaseArray(ref).$loaded().then(function (results){
+//               $scope.searchResults = results;
+
+//               console.log(results);
+
+//               $scope.hide($ionicLoading);
+//             },function(error){
+//               console.error(error);
+//               alert(error);
+//             });
+//         }
+
+//   this.updateUsers = function (searchTerm) {
+//     this.filteredUsers = $filter('filter')(scope.searchResults, searchTerm);
+//   };
+  
+//   this.filteredUsers = $scope.searchResults;
+//   };
+
+  
+//   $scope.toGstCalculator = function(item){
+
+//     $scope.selectedSearch = searchModeFactory.getSearchMode();
+
+//     // console.log('this gets activated');
+//     $state.go('menu.tabs.gstCalculatorPrefill');
+
+//     if($scope.selectedSearch ==="Goods"){
+//       $scope.data = [{"chNumber": item.ChapterNumber, 
+//                 "ChName": item.ChapterName, 
+//                 "chMetaDesc": item.ChapterMetaDescription, 
+//                 "HSN": item.HSNCode, 
+//                 "Desc": item.Description, 
+//                 "gstRate": item.Rate, 
+//                 "gstCess": item.CESS}];
+//     }else{
+//       $scope.data=[{"SACCode": item.SAC_Code,
+//                     "Desc": item.Description_of_Services,
+//                     "gstRate": item.Rate,
+//                     "gstCess": "No CESS on Services!",
+//                     "msg": item.Message}];
+//     }
+    
+//     feedData.setJSON($scope.data);
+
+
+//     $scope.gstData = feedData.getJSON();
+
+
+//   };
+
+//   $scope.expandItem = function(item) {
+//       if ($scope.isItemExpanded(item)) {
+//         $scope.shownItem = null;
+//       } else {
+//         $scope.shownItem = item;
+//       }
+//     };
+//   $scope.isItemExpanded = function(item) {
+//       return $scope.shownItem === item;
+//       };
+// })
+          // .controller('gameController', function($scope, $ionicSideMenuDelegate){
+            
+          //   $scope.$on('$ionicView.enter', function(){
+          //     $ionicSideMenuDelegate.canDragContent(false);
+          //     });
+          //   $scope.$on('$ionicView.leave', function(){
+          //     $ionicSideMenuDelegate.canDragContent(true);
+          //     });
+              
+          //     var winWidth = $(window).width(),
+          //     winHeight = $(window).height(),
+          //     wrapper = $("#wrapper"),
+          //     spinner = $("#fidget-spinner");
+
+          //     // resize it
+          //     wrapper.width(winWidth/2);
+          //     wrapper.height(winWidth/2);
+
+          //     // spin it
+          //     Draggable.create(spinner, {
+          //         type: "rotation", 
+          //         throwProps: false,
+          //         minDuration: 1,
+          //         maxDuration: 3,
+          //         throwResistance: 0,
+          //         overshootTolerance: 0
+          //     });
+
+          // })
+.controller('gstRateListController', function($scope, $state, $ionicLoading, $firebaseArray, searchModeFactory, feedData){
+  
+    $scope.show = function() {
+      $ionicLoading.show({
+      template: '<p>Preparing your search results</p><ion-spinner icon="ripple"></ion-spinner>'
+      });
+    };
+    $scope.hide = function(){
+      $ionicLoading.hide();
+    };
 
   $scope.selectedSearch = searchModeFactory.getSearchMode();
 
+  // console.log($scope.selectedSearch);
 
-  $scope.searchFirebase = function(selectedSearch){  
-    // console.log(selectedSearch);
-    $scope.show($ionicLoading);
+  $scope.searchFirebase = function(selectedSearch){
 
-    // console.log(selectedSearch);
-
-    if (selectedSearch ==='Goods'){
-      console.log('Goods search Activated');
-      var ref = firebase.database().ref().child('Goods');
-      $firebaseArray(ref).$loaded().then(function (results){
-          $scope.searchResults = results;
-          console.log(results);
-          $scope.hide($ionicLoading);
-        },function(error){
-          console.error(error);
-          alert(error);
-        });
-    }else{
       $scope.show($ionicLoading);
-        console.log('Services search Activated');
-        var ref = firebase.database().ref().child('Services');
+
+  if(!$scope.searchResults){
+      if (selectedSearch ==='Goods'){
+        console.log('Goods search Activated');
+        var ref = firebase.database().ref().child('Goods');
         $firebaseArray(ref).$loaded().then(function (results){
             $scope.searchResults = results;
-            // console.log($scope.Services);
+            console.log(results);
             $scope.hide($ionicLoading);
           },function(error){
             console.error(error);
             alert(error);
           });
-      }
-    }
-
-
-
-  $scope.toGstCalculator = function(id){
-    console.log('this gets activated');
-    // console.log(id);
-
-    $scope.chNumber = id.ChapterNumber;
-    $scope.ChName = id.ChapterName;
-    $scope.chMetaDesc = id.ChapterMetaDescription;
-    $scope.HSN = id.HSNCode;
-    $scope.Desc = id.Description;
-    $scope.gstRate = id.Rate;
-    $scope.gstCess = id.CESS;
-
-    // console.log(gstRate);
-
-    // $state.go('menu.tabs.gstRateCalculator');
+      }else{
+        $scope.show($ionicLoading);
+          console.log('Services search Activated');
+          var ref = firebase.database().ref().child('Services');
+          $firebaseArray(ref).$loaded().then(function (results){
+              $scope.searchResults = results;
+              $scope.hide($ionicLoading);
+            },function(error){
+              console.error(error);
+              alert(error);
+            });
+        }
   }
-
-  $scope.calculateGST = function(amount, gstRate){
-    console.log(amount);
-    // document.getElementById("hidden").classList.remove('hidden');
-    $scope.netPrice = amount + ((amount * gstRate) / 100);
-    $scope.gstPrice = $scope.netPrice - amount;
-    
-    console.log('GST %: ' + gstRate);
-    console.log('Net Price: ' + $scope.netPrice);
-    console.log('GST Price: ' + $scope.gstPrice);
-    console.log((amount * gstRate) / 100);
-
+  else{
+    $scope.show($ionicLoading);
+    $scope.searchResults;
+    $scope.hide($ionicLoading);
+  }
   };
 
+
+
+  $scope.toGstCalculator = function(item){
+
+    $scope.selectedSearch = searchModeFactory.getSearchMode();
+
+    // console.log('this gets activated');
+    $state.go('menu.tabs.gstCalculatorPrefill');
+
+    if($scope.selectedSearch ==="Goods"){
+      $scope.data = [{"chNumber": item.ChapterNumber, 
+                "ChName": item.ChapterName, 
+                "chMetaDesc": item.ChapterMetaDescription, 
+                "HSN": item.HSNCode, 
+                "Desc": item.Description, 
+                "gstRate": item.Rate, 
+                "gstCess": item.CESS}];
+    }else{
+      $scope.data=[{"SACCode": item.SAC_Code,
+                    "Desc": item.Description_of_Services,
+                    "gstRate": item.Rate,
+                    "gstCess": "No CESS on Services!",
+                    "msg": item.Message}];
+    }
+    
+    feedData.setJSON($scope.data);
+
+
+    $scope.gstData = feedData.getJSON();
+
+
+  };
 
   $scope.expandItem = function(item) {
       if ($scope.isItemExpanded(item)) {
@@ -104,10 +232,63 @@ angular.module('ionicApp.controllers', [])
         $scope.shownItem = item;
       }
     };
-    $scope.isItemExpanded = function(item) {
+  $scope.isItemExpanded = function(item) {
       return $scope.shownItem === item;
-    };
+      };
 })
+
+.controller('gstRateController', function($scope, $state, $ionicLoading, $firebaseArray, searchModeFactory, feedData){
+  $scope.gstData = [];
+
+  $scope.$on('$ionicView.enter', function() {
+    // Code you want executed every time view is opened
+    document.getElementById('amount').value='';
+    document.getElementById('gstRate').value='';
+    
+    document.getElementById("hidden").classList.add('hidden');
+    // console.log('Yo!!');
+    })
+
+  $scope.resetForm = function($scope){
+    document.getElementById('amount').value='';
+    document.getElementById('gstRate').value='';
+    
+    document.getElementById("hidden").classList.add('hidden');
+    
+    // console.log('Need to clear form!');
+  }
+  $scope.calculateGST = function(amount, gstRate){
+    document.getElementById("hidden").classList.remove('hidden');
+
+    $scope.netPrice = (amount + ((amount * gstRate) / 100)).toFixed(2);
+    $scope.gstPrice = ($scope.netPrice - amount).toFixed(2);
+  };
+
+
+
+})
+
+.controller('advancedGstCalculator', function($scope, feedData){
+  var gRate;
+  var gCess;
+
+  $scope.gstData = feedData.getJSON();
+  gRate = $scope.gstData.gstRate;
+
+    // console.log($scope.gstData);
+
+  $scope.calculateGST = function(amount, gRate){
+
+    document.getElementById("hidden1").classList.remove('hidden');
+
+    $scope.netPrice = (amount + (amount * gRate) / 100).toFixed(2);
+    $scope.gstPrice = ($scope.netPrice - amount).toFixed(2);
+  
+
+  };
+
+})
+
 
 .controller('kbController', function( $scope, $http, DataLoader, $timeout, $rootScope, $ionicLoading ) {
   $scope.baseUrl = 'https://hostbooks.in/wp-json/wp/v2/';
@@ -117,13 +298,11 @@ angular.module('ionicApp.controllers', [])
 
   $scope.show = function() {
     $ionicLoading.show({
-      template: '<p>Please wait...</p><ion-spinner></ion-spinner>'
+      template: '<p>Please wait...</p><ion-spinner icon="ripple"></ion-spinner>'
     });
-    // console.log('this was called');
   };
   $scope.hide = function(){
     $ionicLoading.hide();
-        // console.log('Hide was called too!');
   };
 
 
@@ -134,11 +313,7 @@ angular.module('ionicApp.controllers', [])
       $scope.posts = response.data;
       $scope.moreItems = true;
       $scope.hide($ionicLoading);
-      // $log.log(postsApi, response.data);
     }, function(response) {
-      // $log.log(postsApi, response.data);
-      // console.log('data received - ' + response.data);
-      // console.log('Error occured! ' + response.error_msg);
     });
   }
 
@@ -167,14 +342,12 @@ angular.module('ionicApp.controllers', [])
         }
       }, function(response) {
         $scope.moreItems = false;
-        // console.log('Error occured! ' + response.error_msg);
       });
 
       $scope.$broadcast('scroll.infiniteScrollComplete');
       // $scope.$broadcast('scroll.resize');
     }, 1000);
   }
-
   $scope.moreDataExists = function() {
     return $scope.moreItems;
   }
@@ -198,13 +371,11 @@ angular.module('ionicApp.controllers', [])
 
   $scope.show = function() {
     $ionicLoading.show({
-      template: '<p>Please wait...</p><ion-spinner></ion-spinner>'
+      template: '<p>Please wait...</p><ion-spinner icon="ripple"></ion-spinner>'
     });
-    // console.log('this was called');
   };
   $scope.hide = function(){
     $ionicLoading.hide();
-        // console.log('Hide was called too!');
   };
 
 
@@ -218,11 +389,12 @@ angular.module('ionicApp.controllers', [])
       $scope.hide($ionicLoading);
       // $log.log(postsApi, response.data);
     }, function(response) {
-      // $log.log(postsApi, response.data);
-      // console.log('data received - ' + response.data);
-      // console.log('Error occured! ' + response.error_msg);
+      
     });
   }
+
+
+
 
   // Load posts on page load
   $scope.loadPosts();
@@ -249,11 +421,9 @@ angular.module('ionicApp.controllers', [])
         }
       }, function(response) {
         $scope.moreItems = false;
-        // console.log('Error occured! ' + response.error_msg);
       });
 
       $scope.$broadcast('scroll.infiniteScrollComplete');
-      // $scope.$broadcast('scroll.resize');
     }, 1000);
   }
 
@@ -280,13 +450,13 @@ angular.module('ionicApp.controllers', [])
 
   $scope.show = function() {
     $ionicLoading.show({
-      template: '<p>Please wait...</p><ion-spinner></ion-spinner>'
+      template: '<p>Please wait...</p><ion-spinner icon="ripple"></ion-spinner>'
     });
-    console.log('this was called');
+    // console.log('this was called');
   };
   $scope.hide = function(){
     $ionicLoading.hide();
-        console.log('Hide was called too!');
+        // console.log('Hide was called too!');
   };
 
 
@@ -297,11 +467,8 @@ angular.module('ionicApp.controllers', [])
       $scope.posts = response.data;
       $scope.moreItems = true;
       $scope.hide($ionicLoading);
-      // $log.log(postsApi, response.data);
     }, function(response) {
-      // $log.log(postsApi, response.data);
-      // console.log('data received - ' + response.data);
-      console.log('Error occured! ' + response.error_msg);
+      // console.log('Error occured! ' + response.error_msg);
     });
   }
 
@@ -312,7 +479,6 @@ angular.module('ionicApp.controllers', [])
   // Load more (infinite scroll)
   $scope.loadMore = function() {
     if( !$scope.moreItems ) {
-      // $scope.hide($ionicLoading);
       return;
     }
     var pg = paged++;
@@ -330,11 +496,9 @@ angular.module('ionicApp.controllers', [])
         }
       }, function(response) {
         $scope.moreItems = false;
-        console.log('Error occured! ' + response.error_msg);
       });
 
       $scope.$broadcast('scroll.infiniteScrollComplete');
-      // $scope.$broadcast('scroll.resize');
     }, 1000);
   }
 
@@ -359,18 +523,14 @@ angular.module('ionicApp.controllers', [])
   var postsApi = $scope.baseUrl + 'posts?categories=' + $stateParams.id;
   $scope.moreItems = false;
 
-  // console.log($rootScope.url );
-  // console.log(postsApi);
 
   $scope.show = function() {
     $ionicLoading.show({
-      template: '<p>Please wait...</p><ion-spinner></ion-spinner>'
+      template: '<p>Please wait...</p><ion-spinner icon="ripple"></ion-spinner>'
     });
-    // console.log('this was called');
   };
   $scope.hide = function(){
     $ionicLoading.hide();
-        // console.log('Hide was called too!');
   };
   $scope.loadPosts = function() {
     $scope.show($ionicLoading);
@@ -380,12 +540,7 @@ angular.module('ionicApp.controllers', [])
       
       $scope.moreItems = true;
       $scope.hide($ionicLoading);
-      // $log.log(postsApi, response.data);
     }, function(response) {
-      // $log.log(postsApi, response.data);
-      // console.log('data received - ' + response.data);
-      console.log('Some error');
-      // console.log(response);
     });
   }
   // Load posts on page load
@@ -408,17 +563,13 @@ angular.module('ionicApp.controllers', [])
         });
 
         if( response.data.length <= 0 ) {
-          // console.log(response.data.length);
           $scope.moreItems = false;
         }
       }, function(response) {
         $scope.moreItems = false;
-        // console.log('No More data to fetch');
-        // console.log('Error occured! ' + response.error_msg);
       });
 
       $scope.$broadcast('scroll.infiniteScrollComplete');
-      // $scope.$broadcast('scroll.resize');
     }, 1000);
     $scope.hide($ionicLoading);
   }
@@ -440,125 +591,7 @@ angular.module('ionicApp.controllers', [])
 })
 .controller('gstLandingPageController', function( $scope, $http, DataLoader, $state, $timeout, $rootScope, $ionicLoading) {
   $scope.baseUrl = 'https://hostbooks.in/wp-json/wp/v2/';
-  var postsApiKb = $scope.baseUrl + 'posts?categories=64&per_page=6';
-  var postsApiNews = $scope.baseUrl + 'posts?categories=70&per_page=6';
-
-
-
-  // var postsApiKb = 'https://www.gst.hostbooks.in/wp-json/wp/v2/posts?categories=64&per_page=3';
-  // var postsApiNews = 'https://www.gst.hostbooks.in/wp-json/wp/v2/posts?categories=70&per_page=3';
-  // var postsApiGstKb = 'https://www.gst.hostbooks.in/wp-json/wp/v2/posts?categories=63&per_page=3';
-
-  
-  $scope.moreItems = false;
-
-  $scope.show = function() {
-    $ionicLoading.show({
-      template: '<p>Please wait...</p><ion-spinner></ion-spinner>'
-    });
-    // console.log('this was called');
-  };
-  $scope.hide = function(){
-    $ionicLoading.hide();
-        // console.log('Hide was called too!');
-  };
-  $scope.loadPosts = function() {
-    $scope.show($ionicLoading);
-    // Get all of our posts
-    DataLoader.get( postsApiKb ).then(function(response) {
-      $scope.postsKb = response.data;
-      $scope.moreItems = true;
-      // $log.log(postsApi, response.data);
-    }, function(response) {
-      // $log.log(postsApi, response.data);
-      // console.log('data received - ' + response.data);
-      // console.log('Error occured! ' + response.error_msg);
-    });
-
-    DataLoader.get( postsApiNews ).then(function(response) {
-      $scope.postsNews = response.data;
-      $scope.moreItems = true;
-      $scope.hide($ionicLoading);
-      // $log.log(postsApi, response.data);
-    }, function(response) {
-      // $log.log(postsApi, response.data);
-      // console.log('data received - ' + response.data);
-    });
-  }
-
-  // Load posts on page load
-  $scope.loadPosts();
-  paged = 2;
-
-  // Load more (infinite scroll)
-  $scope.loadMore = function() {
-    // $scope.postsKb = [];
-    $scope.show($ionicLoading);
-    $scope.postLimit = 3;
-    if( !$scope.moreItems ) {
-      // $scope.hide($ionicLoading);
-      return;
-    }
-    var pg = paged++;
-    $scope.show($ionicLoading);
-    console.log('loadMore ' + pg );
-    
-    
-    $timeout(function() {
-
-      DataLoader.get( postsApiKb).then(function(response) {
-        $scope.postsKb = response.data;
-        // angular.forEach( response.data, function( value, key ) {
-        //   $scope.postsKb.push(value);
-        // });
-
-        if( response.data.length <= 0 ) {
-
-          $scope.moreItems = false;
-          
-        }
-      }, function(response) {
-        $scope.moreItems = false;
-        console.log('Error occured! ' + response.error_msg);
-      });
-
-
-      DataLoader.get( postsApiNews).then(function(response) {
-        $scope.postsNews = response.data;
-        // angular.forEach( response.data, function( value, key ) {
-        //   $scope.postsNews.push(value);
-        // });
-
-        if( response.data.length <= 0 ) {
-
-          $scope.moreItems = false;
-          
-        }
-      }, function(response) {
-        $scope.moreItems = false;
-        console.log('Error occured! ' + response.error_msg);
-      });
-      $scope.$broadcast('scroll.infiniteScrollComplete');
-      // $scope.$broadcast('scroll.resize');
-    }, 1000);
-    $scope.hide($ionicLoading);
-  }
-  $scope.moreDataExists = function() {
-    return $scope.moreItems;
-  }
-  // Pull to refresh
-  $scope.doRefresh = function() {
-    $timeout( function() {
-      $scope.loadPosts();
-      //Stop the ion-refresher from spinning
-      $scope.$broadcast('scroll.refreshComplete');
-      
-    }, 1000);
-  };
-
   $scope.fetchGstMatrix = function(id){
-    // $location.url('#/menu/tab/gstLaw/' + 69);
-    // $state.go('menu.tabs.category.' + id);
 
     $state.go('menu.tabs.homeLawListing', {
         id: id //selectedItem and id is defined
@@ -574,13 +607,11 @@ angular.module('ionicApp.controllers', [])
   $scope.baseUrl = 'https://hostbooks.in/wp-json/wp/v2/';
   $scope.show = function() {
     $ionicLoading.show({
-      template: '<p>Please wait...</p><ion-spinner></ion-spinner>'
+      template: '<p>Please wait...</p><ion-spinner icon="ripple"></ion-spinner>'
     });
-    // console.log('this was called');
   };
   $scope.hide = function(){
     $ionicLoading.hide();
-        // console.log('Hide was called too!');
   };
 
   // Fetching Knowledge Base Data
@@ -598,16 +629,8 @@ angular.module('ionicApp.controllers', [])
    $scope.postsNews=data;
    
   });
-  // Fetching GST Data
-  // $http.get("https://www.gst.hostbooks.in/wp-json/wp/v2/posts?categories=63&per_page=3").success(function(data){
-  //  // console.log(data);
-  //   $scope.gstKb=data;
-    
-  // });
   $scope.show($ionicLoading);
   $scope.fetchGstMatrix = function(id){
-    // $location.url('#/menu/tab/gstLaw/' + 69);
-    // $state.go('menu.tabs.category.' + id);
 
     $state.go('menu.tabs.homeLawListing', {
         id: id //selectedItem and id is defined
@@ -734,11 +757,9 @@ angular.module('ionicApp.controllers', [])
             break;
     }
 
-    // console.log('Category Id: ' +  catId);
 
     $http.get("https://hostbooks.in/wp-json/wp/v2/posts?categories=" + catId + "&per_page=100").success(function(data){
         $scope.posts=data;
-       // console.log(data);
       });
     $stateParams.id = catId;
     $state.go('menu.tabs.homeLawListing', {
@@ -749,7 +770,6 @@ angular.module('ionicApp.controllers', [])
     $scope.gstRule = function(){
       $stateParams.id = 361;
 
-      // $state.go('menu.tabs.homeRule');
 
       $state.go('menu.tabs.homeRuleMatrix', {
         id: $stateParams.id //selectedItem and id is defined
@@ -757,12 +777,6 @@ angular.module('ionicApp.controllers', [])
     };
 })
 .controller('categoryListController', function($scope, $http, $timeout, $ionicLoading, $ionicScrollDelegate){
-  
-  // // Fetching Category Data
-    // $http.get("https://www.gst.hostbooks.in/wp-json/wp/v2/categories/?per_page=100").success(function(data){
-    //  // console.log(data);
-    //  $scope.categories=data;
-  // });
 
     $ionicScrollDelegate.scrollTop();
     $scope.categories=[];
@@ -772,26 +786,9 @@ angular.module('ionicApp.controllers', [])
     // $http.get("https://www.gst.hostbooks.in/wp-json/wp/v2/categories/?per_page=27").success(function(data){
     $http.get("https://hostbooks.in/wp-json/wp/v2/categories/?per_page=27").success(function(data){
         $scope.categories=data;
-        // console.log($scope.categories);
 
         });
-    // $http({
-    //     method: 'GET',
-    //     url: 'https://www.gst.hostbooks.in/wp-json/wp/v2/categories/?per_page=27'
-    //   }).then(function successCallback(data) {
-    //       // this callback will be called asynchronously
-    //       // when the response is available
-    //       $scope.categories=data;
-    //       console.log(response);
-    //     }, function errorCallback(data) {
-    //       // called asynchronously if an error occurs
-    //       // or server returns response with an error status.
-    //       console.log('this was called!');
-    //   });
-    /*
-     * if given group is the selected group, deselect it
-     * else, select the given group
-     */
+
     $scope.toggleGroup = function(group) {
       $ionicScrollDelegate.scrollTop();
       if ($scope.isGroupShown(group)) {
@@ -808,45 +805,51 @@ angular.module('ionicApp.controllers', [])
   // $scope.sourceLink = '';
   $scope.show = function() {
     $ionicLoading.show({
-      template: '<p>Please wait...</p><ion-spinner></ion-spinner>'
+      template: '<p>Please wait...</p><ion-spinner icon="ripple"></ion-spinner>'
     });
-    console.log('this was called');
+    // console.log('this was called');
   };
   $scope.hide = function(){
     $ionicLoading.hide();
-        console.log('Hide was called too!');
+        // console.log('Hide was called too!');
   };
+
   $scope.show($ionicLoading);
   // $stateParams.id;
   // $http.get("https://www.gst.hostbooks.in/wp-json/wp/v2/posts/" +$stateParams.id).success(function(post){
     $http.get("https://hostbooks.in/wp-json/wp/v2/posts/" + $stateParams.id).success(function(post){ 
       
+      $scope.show($ionicLoading);
+
       $scope.post=post;
       sourceLink = post.link;
       sourceTitle = post.title.rendered;
-      sourceExcerpt1 = post.excerpt.rendered;
+      // sourceExcerpt1 = post.excerpt.rendered;
       if (post.better_featured_image != null){
-      sourceImage = post.better_featured_image.media_details.sizes.thumbnail.source_url;
+      // sourceImage = post.better_featured_image.media_details.sizes.td_80x60.source_url;
       }
     });
     $http.get("https://hostbooks.in/wp-json/wp/v2/tags?post=" + $stateParams.id).success(function(tags){ 
       $scope.tags=tags;
     });
-  $timeout( function() {
+    $timeout( function() {
       $scope.$broadcast('scroll.refreshComplete');
       $scope.hide($ionicLoading);
     }, 4000);
 
-  $scope.$root.shareAnywhere = function() {
+
+    // $scope.show($ionicLoading);
+    $scope.$root.shareAnywhere = function() {
 
     var message = sourceTitle + "\n\nGet latest news and updates on GST. Download the app on:\nGoogle Play: https://play.google.com/store/apps/details?id=com.hostbooks.gstmu&rdid=com.hostbooks.gstmu \n\n Itunes: https://itunes.apple.com/us/app/%C2%B5gst/id1261965136 \n\n"; 
     var subject = "µGST App powered by Hostbooks";
-    //var file = sourceImage;
-    var image = sourceImage;
+    // var image = sourceImage;
+    var image = "img/logo.png"
     var link = "VisitWebURL: " + sourceLink;
 
-
+     // $scope.hide($ionicLoading);
     $cordovaSocialSharing
+
     // .share(message, subject, file, link) // Share via native share sheet
     .share(message, subject, image, link) // Share via native share sheet
     .then(function(result) {
@@ -859,7 +862,7 @@ angular.module('ionicApp.controllers', [])
   }
 
   $scope.$on('$stateChangeStart', function() {
-    console.log('$stateChangeStart received. Removing button');
+    // console.log('$stateChangeStart received. Removing button');
     $scope.$root.shareAnywhere = null;
   })
       //     $scope.$parent.shareAnywhere = function(){
@@ -869,9 +872,9 @@ angular.module('ionicApp.controllers', [])
     // console.log('social Share controller activated!');
 })
 .controller('MapCtrl', function($scope, $ionicLoading) {
-  console.log("MapCtrl");
+  // console.log("MapCtrl");
   $scope.initialise = function() {
-  console.log("In Google.maps.event.addDomListener");
+  // console.log("In Google.maps.event.addDomListener");
   var myLatlng = new google.maps.LatLng(28.500639, 77.070306);
   var mapOptions = {
   center: myLatlng,
@@ -894,7 +897,6 @@ angular.module('ionicApp.controllers', [])
           ]
   };
 
-    // console.log(mapOptions);
     var map = new google.maps.Map(document.getElementById("map"), mapOptions);
            // Create a marker and set its position.
     var infowindow = new google.maps.InfoWindow();
@@ -902,7 +904,6 @@ angular.module('ionicApp.controllers', [])
       map: map,
       animation: google.maps.Animation.DROP,
       position: myLatlng,
-      // title: 'iRexx Technologies Ltd.'
     });
 
     google.maps.event.addListener(marker, 'click', function() {
@@ -910,22 +911,7 @@ angular.module('ionicApp.controllers', [])
     });
     // marker.setVisible(true);
     infowindow.setContent('<div><strong>iRexx Technologies Ltd.</strong><br />B – 20 & 21, Hartron Complex, Electronic City, <br /> Udyog Vihar Phase IV, Sector 18, <br />Gurugram, Haryana 122015 </div>');
-    // infowindow.open(map, marker);
 
-
-    // navigator.geolocation.getCurrentPosition(function(pos) {
-    //     console.log(pos);
-    //     map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-    //     var myLocation = new google.maps.Marker({
-    //         position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
-    //         map: map,
-    //         title: "My Location"
-    //     });
-
-    //     console.log(myLocation);
-    // });
-
-    // $scope.map = map;
   };
   google.maps.event.addDomListener(document.getElementById("map"), 'load', $scope.initialise());
 })
@@ -938,27 +924,20 @@ angular.module('ionicApp.controllers', [])
   $scope.moreItems = false;
   $scope.show = function() {
     $ionicLoading.show({
-      template: '<p>Preparing search...</p><ion-spinner></ion-spinner>'
+      template: '<p>Preparing search...</p><ion-spinner icon="ripple"></ion-spinner>'
     });
-    // console.log('this was called');
   };
   $scope.hide = function(){
     $ionicLoading.hide();
-        // console.log('Hide was called too!');
   };
   $scope.loadPosts = function() {
     $scope.show($ionicLoading);
     // Get all of our posts
     DataLoader.get( postsApi ).then(function(response) {
       $scope.posts = response.data;
-      // alert($scope.posts.length);
       $scope.moreItems = true;
       $scope.hide($ionicLoading);
-      // $log.log(postsApi, response.data);
     }, function(response) {
-      // $log.log(postsApi, response.data);
-      // console.log('data received - ' + response.data);
-      // console.log('Error occured! ' + response.error_msg);
     });
   }
   // Load posts on page load
@@ -972,7 +951,6 @@ angular.module('ionicApp.controllers', [])
 
     $scope.show($ionicLoading);
     if( !$scope.moreItems ) {
-      // $scope.hide($ionicLoading);
       return;
     }
     var pg = paged++;
@@ -989,11 +967,9 @@ angular.module('ionicApp.controllers', [])
       }, function(response) {
         $scope.moreItems = false;
         $scope.hide($ionicLoading);
-        // console.log('Error occured! ' + response.error_msg);
       });
 
       $scope.$broadcast('scroll.infiniteScrollComplete');
-      // $scope.$broadcast('scroll.resize');
     }, 1000);
   }
 
@@ -1006,30 +982,26 @@ angular.module('ionicApp.controllers', [])
     $timeout( function() {
       $scope.loadMore();
       //Stop the ion-refresher from spinning
-      // $scope.$broadcast('scroll.refreshComplete');
       
     }, 2000);
   }; 
 
   $scope.clearSearch = function() {
     $scope.searchTerm = null;
-    console.log('clear was called');
-    console.log($scope);
+    console.log('clear was called'); 
+    console.log($scope);    
     };
-    // console.log($scope);
 })
 .controller('searchController1', function($scope, $rootScope, $http, DataLoader,$ionicLoading ){
   var postsApi = 'https://hostbooks.in/wp-json/wp/v2/posts';
 
   $scope.show = function() {
     $ionicLoading.show({
-      template: '<p>Please wait...</p><ion-spinner></ion-spinner>'
+      template: '<p>Please wait...</p><ion-spinner icon="ripple"></ion-spinner>'
     });
-    // console.log('this was called');
   };
   $scope.hide = function(){
     $ionicLoading.hide();
-        // console.log('Hide was called too!');
   };
 
   // $scope.loadPosts = function() {
@@ -1038,39 +1010,11 @@ angular.module('ionicApp.controllers', [])
     DataLoader.get( postsApi ).then(function(response) {
 
       $scope.posts = response.data;
-      // $scope.pid = $scope.posts.id;
-      // console.log($scope.pid[0].id);
     }, function(response) {
-      // $log.log(postsApi, response.data);
-      // console.log('data received - ' + response.data);
     });
     $scope.hide($ionicLoading);
   // }
 })
-// .controller('emailCtrl', function($scope, $http){
-  //     // $scope.sendEmail = function(){
-  //     //   console.log('activated');
-  //     //     if(window.plugins && window.plugins.emailComposer){
-  //     //         window.plugins.emailComposer.showEmailComposerWithCallback(function(result){
-  //     //         },
-  //     //         "GST Mobile App!", //Subject line
-  //     //         "",                 //Email Body
-  //     //         ["roopak.burman@gmail.com"],    //To email
-  //     //         null,               // CC
-  //     //         null,               //BCC
-  //     //         false,              //isHTML
-  //     //         null,               //Attachments
-  //     //         null);              //Attachments data
-
-  //     //     }
-  //     // }
-
-  //     // // $http.get('/json/iNew.json').success(function (data) {
-
-  //     // //             $scope.MyRecCollection = data;
-  //     // //             console.table(data);
-  //     // //     })
-// })
 .controller('socialShareController', function($scope, $cordovaSocialSharing){
   
     $scope.shareAnywhere = function() {
@@ -1083,9 +1027,5 @@ angular.module('ionicApp.controllers', [])
     // $rootScope.url = 'https://www.gst.hostbooks.in/wp-json/wp/v2/';
     $rootScope.url = 'https://hostbooks.in/wp-json/wp/v2/';
 
-    // $scope.$on('cloud:push:notification', function(event, data) {
-    //   var msg = data.message;
-    //   alert(msg.title + ': ' + msg.text);
-    // });
   });
 });

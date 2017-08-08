@@ -29,6 +29,7 @@ var gst = angular.module('ionicApp', ['ionic', 'ngCordova', 'ngResource', 'ionic
         }
         if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+            cordova.plugins.Keyboard.disableScroll(true);
         }
         if (window.StatusBar) {
             // org.apache.cordova.statusbar required
@@ -91,7 +92,8 @@ var gst = angular.module('ionicApp', ['ionic', 'ngCordova', 'ngResource', 'ionic
 
   $ionicConfigProvider.navBar.alignTitle('center');
   $ionicConfigProvider.backButton.previousTitleText(false);
-  $ionicConfigProvider.backButton.text('')
+  $ionicConfigProvider.backButton.text('');
+
   $stateProvider
     .state('menu', {
       url: "/menu",
@@ -107,6 +109,7 @@ var gst = angular.module('ionicApp', ['ionic', 'ngCordova', 'ngResource', 'ionic
         }
       }
     })
+// Home-tab States start
     .state('menu.tabs.home', {
       url: "/home",
       views: {
@@ -116,52 +119,34 @@ var gst = angular.module('ionicApp', ['ionic', 'ngCordova', 'ngResource', 'ionic
         }
       }
     })
-    .state('menu.tabs.news', {
-      url: "/news",
-      views: {
-        'news-tab' : {
-          templateUrl: "templates/news.html",
-          controller: 'newsController'
-        }
-      }
-    })
     .state('menu.tabs.knowledgeBase', {
       url: "/knowledgeBase",
       views: {
-        'kb-tab' :{
+        'home-tab' :{
           templateUrl: "templates/knowledgeBase.html",
           controller: 'kbController' //wpPostsController testLazy
         }
       }
     })
-    .state('menu.tabs.category', {
-        url: '/category/:id',
-        views: {
-            'SideMenuContent-tab': {
-                templateUrl: 'templates/category.html',
-                controller: 'catPostController'
-            }
-        }
-    })
-    .state('menu.tabs.categoryDetail', {
-      url: "/categoryDetail/:id",
-      views: {
-        'SideMenuContent-tab': {
-          templateUrl: "templates/detailsPage.html",
-          controller: 'detailController' //wpPostsDetailController
-        }
-      }
-    })
-    .state('menu.tabs.matrix', {
-      url: '/matrix/:id',
-      views: {
-        'home-tab': {
-            templateUrl: 'templates/category.html',
-            controller: 'catPostController'
-        }
-      }
-    })
-    .state('menu.tabs.gstlaw', {
+    // .state('menu.tabs.fidget', {
+    //   url: '/fidget',
+    //   views: {
+    //     'home-tab': {
+    //       templateUrl: 'templates/fidget.html',
+    //       controller: 'gameController'
+    //     }
+    //   }
+    // })
+    // .state('menu.tabs.matrix', {
+    //   url: '/matrix/:id',
+    //   views: {
+    //     'home-tab': {
+    //         templateUrl: 'templates/category.html',
+    //         controller: 'catPostController'
+    //     }
+    //   }
+    // })
+    .state('menu.tabs.gstLaw', {
       url: "/gstLaw",
       views: {
         'home-tab': {
@@ -170,8 +155,8 @@ var gst = angular.module('ionicApp', ['ionic', 'ngCordova', 'ngResource', 'ionic
         }
       }
     })
-    .state('menu.tabs.gstRateFinder', {
-      url: "/gstRateFinder",
+    .state('menu.tabs.gstRateFinderHome', {
+      url: "/gstRateFinderHome",
       views: {
         'home-tab': {
           templateUrl: "templates/gstRateFinder.html",
@@ -179,26 +164,24 @@ var gst = angular.module('ionicApp', ['ionic', 'ngCordova', 'ngResource', 'ionic
         }
       }
     })
-    .state('menu.tabs.selectSearchMode', {
-      url: "/selectSearchMode",
+    .state('menu.tabs.calculatorGst', {
+      url: "/calculatorGst",
       views: {
-        'home-tab': {
-          templateUrl: "templates/selectSearchMode.html",
-          controller: 'searchModeController'
+        'rateCalculator-tab': {
+          templateUrl: "templates/calculatorGst.html",
+          controller: 'gstRateController' //
         }
       }
     })
-    .state('menu.tabs.gstRateCalculator', {
-      url: "/gstRateCalculator",
+    .state('menu.tabs.gstCalculatorPrefill', {
+      url: "/gstCalculatorPrefill",
       views: {
-        'home-tab': {
-          templateUrl: "templates/gstRateCalculator.html",
-          controller: 'gstRateController'
+        'rateFinder-tab': {
+          templateUrl: "templates/gstCalculatorPrefill.html",
+          controller: 'advancedGstCalculator' //gstRateController
         }
       }
     })
-
-
     .state('menu.tabs.homeLawListing', {
       url: "/homeLawListing/:id",
       views: {
@@ -226,24 +209,6 @@ var gst = angular.module('ionicApp', ['ionic', 'ngCordova', 'ngResource', 'ionic
         }
       }
     })  
-    .state('menu.tabs.faqSideGst', {
-      url: "/faqSideGst/:id",
-      views: {
-        'SideMenuContent-tab': {
-          templateUrl: "templates/faqGst.html",
-          controller: 'catPostController' //wpPostsDetailController
-        }
-      }
-    })
-    .state('menu.tabs.faqSideGstDetail', {
-      url: "/faqSideGstDetail/:id",
-      views: {
-        'SideMenuContent-tab': {
-          templateUrl: "templates/detailsPage.html",
-          controller: 'detailController' //wpPostsDetailController
-        }
-      }
-    }) 
     .state('menu.tabs.homeLawDetail', {
       url: "/homeLawDetail/:id",
       views: {
@@ -262,15 +227,7 @@ var gst = angular.module('ionicApp', ['ionic', 'ngCordova', 'ngResource', 'ionic
         }
       }
     })
-    .state('menu.tabs.homeRule', {
-      url: "/homeRule/:id",
-      views: {
-        'SideMenuContent-tab': {
-          templateUrl: "templates/detailsPage.html",
-          controller: 'detailController' //wpPostsDetailController
-        }
-      }
-    })
+
     .state('menu.tabs.gst', {
       url: "/homeNewsDetail/:id",
       views: {
@@ -280,15 +237,15 @@ var gst = angular.module('ionicApp', ['ionic', 'ngCordova', 'ngResource', 'ionic
         }
       }
     })
-    .state('menu.tabs.homeKbDetail', {
-      url: "/homeKbDetail/:id",
-      views: {
-        'home-tab': {
-          templateUrl: "templates/detailsPage.html",
-          controller: 'detailController' //wpPostsDetailController
-        }
-      }
-    })
+    // .state('menu.tabs.homeKbDetail', {
+    //   url: "/homeKbDetail/:id",
+    //   views: {
+    //     'home-tab': {
+    //       templateUrl: "templates/detailsPage.html",
+    //       controller: 'detailController' //wpPostsDetailController
+    //     }
+    //   }
+    // })
     .state('menu.tabs.homeGstDetail', {
       url: "/homeGstDetail/:id",
       views: {
@@ -297,7 +254,91 @@ var gst = angular.module('ionicApp', ['ionic', 'ngCordova', 'ngResource', 'ionic
           controller: 'detailController' //wpPostsDetailController
         }
       }
+    })    
+    .state('menu.tabs.kbDetail', {
+      url: "/kbDetail/:id",
+      views: {
+        'home-tab': {
+          templateUrl: "templates/detailsPage.html",
+          controller: 'detailController' //wpPostsDetailController
+        }
+      }
     })
+    .state('menu.tabs.search', {
+        url: "/search",
+        views: {
+          'home-tab': {
+            templateUrl: "templates/search.html",
+            controller: 'searchController'
+          }
+        }
+      })
+    .state('menu.tabs.searchItem', {
+      url: "/searchItem/:id",
+      views: {
+        'home-tab': {
+          templateUrl: "templates/detailsPage.html",
+          controller: 'detailController'
+        }
+      }
+    })
+// Home-Tab States End
+    .state('menu.tabs.news', {
+      url: "/news",
+      views: {
+        'news-tab' : {
+          templateUrl: "templates/news.html",
+          controller: 'newsController'
+        }
+      }
+    })
+
+// SideMenuContent-tab States start
+    .state('menu.tabs.category', {
+        url: '/category/:id',
+        views: {
+            'SideMenuContent-tab': {
+              templateUrl: 'templates/category.html',
+              controller: 'catPostController'
+            }
+        }
+    })
+    .state('menu.tabs.categoryDetail', {
+      url: "/categoryDetail/:id",
+      views: {
+        'SideMenuContent-tab': {
+          templateUrl: "templates/detailsPage.html",
+          controller: 'detailController' //wpPostsDetailController
+        }
+      }
+    })
+    .state('menu.tabs.faqSideGst', {
+      url: "/faqSideGst/:id",
+      views: {
+        'SideMenuContent-tab': {
+          templateUrl: "templates/faqSideGstList.html",
+          controller: 'catPostController' //wpPostsDetailController
+        }
+      }
+    })
+    .state('menu.tabs.faqSideGstDetail', {
+      url: "/faqSideGstDetail/:id",
+      views: {
+        'SideMenuContent-tab': {
+          templateUrl: "templates/detailsPage.html",
+          controller: 'detailController' //wpPostsDetailController
+        }
+      }
+    }) 
+    .state('menu.tabs.homeRule', {
+      url: "/homeRule/:id",
+      views: {
+        'SideMenuContent-tab': {
+          templateUrl: "templates/detailsPage.html",
+          controller: 'detailController' //wpPostsDetailController
+        }
+      }
+    })    
     .state('menu.tabs.schedule', {
       url: "/schedule/:id",
       views: {
@@ -307,7 +348,6 @@ var gst = angular.module('ionicApp', ['ionic', 'ngCordova', 'ngResource', 'ionic
         }
       }
     })
-
     .state('menu.tabs.contactUs', {
       url: "/contactUs",
       views: {
@@ -317,6 +357,37 @@ var gst = angular.module('ionicApp', ['ionic', 'ngCordova', 'ngResource', 'ionic
         }
       }
     })
+    .state('menu.tabs.contact', {
+      url: "/contact",
+      views: {
+        'home-tab': {
+          templateUrl: "templates/contactUs.html",
+          controller: 'MapCtrl' //wpPostsDetailController
+        }
+      }
+    })
+// SideMenuContent-tab States End
+
+    .state('menu.tabs.gstRateFinder', {
+      url: "/gstRateFinder",
+      views: {
+        'rateFinder-tab': {
+          templateUrl: "templates/gstRateFinder.html",
+          controller: 'gstRateListController' //gstRateController
+        }
+      }
+    })    
+
+    .state('menu.tabs.finderSearchMode', {
+      url: "/finderSearchMode",
+      views: {
+        'rateFinder-tab': {
+          templateUrl: "templates/finderSearchMode.html",
+          controller: 'searchModeController' //
+        }
+      }
+    })    
+
     .state('menu.tabs.newsDetail', {
       url: "/newsDetail/:id",
       views: {
@@ -326,33 +397,7 @@ var gst = angular.module('ionicApp', ['ionic', 'ngCordova', 'ngResource', 'ionic
         }
       }
     })
-    .state('menu.tabs.kbDetail', {
-      url: "/kbDetail/:id",
-      views: {
-        'kb-tab': {
-          templateUrl: "templates/detailsPage.html",
-          controller: 'detailController' //wpPostsDetailController
-        }
-      }
-    })
-    .state('menu.tabs.search', {
-        url: "/search",
-        views: {
-          'search-tab': {
-            templateUrl: "templates/search.html",
-            controller: 'searchController'
-          }
-        }
-      })
-    .state('menu.tabs.searchItem', {
-      url: "/searchItem/:id",
-      views: {
-        'search-tab': {
-          templateUrl: "templates/detailsPage.html",
-          controller: 'detailController'
-        }
-      }
-    })
+
     $urlRouterProvider.otherwise("/menu/tab/home");
 
     var config = {

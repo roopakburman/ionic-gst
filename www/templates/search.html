@@ -1,24 +1,28 @@
 <ion-view title='<img class="title-image" src="img/logo.png" />'>
     <ion-content>
         <div class="list">
+            <form name="gstSearchForm">
             <div class="item item-input-inset">
                 <label class="item-input-wrapper">
-                    <input type="search" placeholder="Search for" ng-model="searchTerm"> 
+                    <input type="search" placeholder="Search for" ng-model="searchTerm" ng-model-options="{updateOn : 'default blur', debounce: { 'default': 2000, 'blur': 0 }}" required> 
                 </label>
                     <a ng-click="searchTerm = ''" class="button ion-ios-close button-clear button-small btn-red" ng-show="searchTerm.length"></a>
-                 <button class="button button-positive" ng-click="loadMore(); doRefresh(); ">
+                 <button class="button button-positive" ng-click="loadMore(); doRefresh();" ng-disabled="gstSearchForm.$invalid">
                     Search
                 </button>
             </div>
+            </form>
             <div class="hidden" id="hidden">
                 <div ng-hide="searchTerm==''">
                     
-                    <ion-item class="item-thumbnail-left item item-text-wrap" ng-repeat="n in posts | orderBy:'-date' | filter : searchTerm track by $index" href="#/menu/tab/searchItem/{{n.id}}">
+<!--                     <ion-item class="item-thumbnail-left item item-text-wrap" ng-repeat="n in posts | orderBy:'-date' | filter : searchTerm track by $index" href="#/menu/tab/searchItem/{{n.id}}"> -->
+                    <ion-item class="item item-thumbnail-left item item-text-wrap" ng-repeat="n in posts | orderBy:'-date'" ng-show="([n] | filter:searchTerm).length > 0" href="#/menu/tab/searchItem/{{n.id}}">
                       
                       <img ng-src="{{n.better_featured_image.media_details.sizes.thumbnail.source_url}}"/>
                       <h2 ng-bind-html="n.title.rendered"></h2>
                       <h4>{{n.date | date:'dd-MMMM-yyyy'}}</h4>
                     </ion-item>
+                    <ion-item ng-show="(posts |  filter : searchTerm).length == 0">No results found, try a different search term.</ion-item>
                 </div>
             </div>
             
